@@ -47,7 +47,7 @@ dlldata.c
 *.mdf
 *.ldf
 *.ndf
-
+.vs
 
 
 # Local History for Visual Studio
