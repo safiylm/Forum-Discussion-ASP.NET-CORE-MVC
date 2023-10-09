@@ -1,0 +1,19 @@
+﻿@{
+    ViewData["Title"] = "Connexion";
+}
+@model Forum_descussion_ASP.NET_core_mvc.Models.UserModel
+
+
+
+<div class="div-auth">
+    <h1>Connexion</h1></br>
+    <form asp-action="connexion" method="post">
+        <input type="text" asp-for="Email" placeholder="email" class="form-control"/>
+        <input type="password" asp-for="Password" placeholder="password" class="form-control" />
+        <button type="submit" class="btn-primary"> Se connecter  </button>
+
+    </form>
+  
+</div>
+
+

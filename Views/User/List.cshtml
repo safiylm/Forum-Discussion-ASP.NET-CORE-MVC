@@ -1,0 +1,47 @@
+﻿@model IEnumerable<Forum_descussion_ASP.NET_core_mvc.Models.UserModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.NameUser)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Password)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+            @foreach (var item in Model) {
+        <tr>
+                <td>
+                    <a asp-controller="Question" asp-action="LeursQuestions" asp-route-Id="@item?.ID">
+                @Html.DisplayFor(modelItem => item.NameUser)
+                    </a>
+            </td>
+            <td>
+                <td>
+                    <a asp-controller="Question" asp-action="LeursQuestions" asp-route-Id="@item?.ID">
+
+                @Html.DisplayFor(modelItem => item.Email)</a>
+            </td>
+            <td>
+                <td>
+                    <a asp-controller="Question" asp-action="LeursQuestions" asp-route-Id="@item?.ID">
+
+                                @Html.DisplayFor(modelItem => item.Password) 
+                    </a>
+            </td>
+          
+        </tr>
+}
+    </tbody>
+</table>

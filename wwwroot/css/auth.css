@@ -1,0 +1,28 @@
+﻿﻿
+.div-accueil {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    flex-direction: row;
+    padding: 30px;
+    width: 100%;
+}
+
+.div-accueil div p {
+    max-width: 400px;
+}
+
+.div-accueil div img {
+    height: 600px;
+    width: auto;
+}
+
+.btn-Learn-More {
+    border: none;
+    border-radius: 10px;
+    font-size: 20px;
+    background-color: lightblue;
+    color: white;
+    padding: 20px 25px;
+}

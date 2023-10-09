@@ -1,0 +1,42 @@
+﻿@{
+    ViewData["Title"] = "Inscription";
+}
+
+@model Forum_descussion_ASP.NET_core_mvc.Models.UserModel
+
+
+<h1>Create</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Inscription" method="post" >
+            <div class="form-group">
+                <label asp-for="NameUser" class="control-label"></label>
+                <input asp-for="NameUser" class="form-control" value="mynameuis"/>
+                <span asp-validation-for="NameUser" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" value="email@gmgmgmgm.com"/>
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Password" class="control-label"></label>
+                <input asp-for="Password" class="form-control" value="123456"/>
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+

@@ -1,0 +1,71 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Forum Discussion </title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/accueil.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/auth.css" asp-append-version="true" />
+
+
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
+          rel="stylesheet" />
+
+
+    <link rel="stylesheet" href="~/APP_WEB_ASP.NET_CORE_MVC.styles.css" asp-append-version="true" />
+</head>
+<body>
+    <partial name="Nav_connected.cshtml" />
+    <partial name="Nav_non_connected.cshtml" />
+
+
+
+
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy;
+    
+            
+            <a href="https://www.utas.edu.au/mylo/staff/staff-resources/discussions/creating-a-discussion-forum-and-thread">how create a discussion form and thread</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
+
+
+    <style>
+
+    .container-fluid{
+        display:flex;
+        align-content:baseline;
+        justify-content:space-between;
+    }
+
+
+    .navbar-collapse {
+        flex-grow: 0 !important;
+    }
+
+    footer{
+        padding: 15px;
+    }
+
+    </style>

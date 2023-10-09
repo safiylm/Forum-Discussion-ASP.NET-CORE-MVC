@@ -1,0 +1,98 @@
+
+body {
+    background-color: #efedef;
+    background-color: whitesmoke;
+}
+
+h1 {
+    font-size: 18px;
+}
+
+    h1 a {
+        text-decoration: none;
+        color: black;
+    }
+
+.question .titre a, .div-categorie a {
+    text-decoration: none;
+    color: dimgrey;
+}
+
+.div-btn-, .div-categorie, .div-btn-choix {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.div-btn-, .div-btn-choix {
+    justify-content: flex-start;
+}
+
+.div-btn- button, .div-btn-choix button, .div-btn-choix a{
+        margin: 0 10px;
+        padding: 5px 9px;
+        border: none;
+        background-color: transparent;
+        color: #7b8598;
+        border-radius: 6px;
+}
+
+.div-liste-questions, .div-nb, .titre, .nb-answers {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+
+
+
+.div-liste-questions {
+    background-color: white;
+    border-radius: 15px;
+    align-items: center;
+    /*max-width:1100px;*/
+    margin: 20px auto;
+}
+
+.nb-answers, .div-nb {
+    align-items: center;
+}
+
+    .div-nb div {
+        border-radius: 5px;
+        padding: 6px 10px;
+        border: 1px solid #ddd;
+    }
+
+.titre h3 {
+    font-size: 20px;
+}
+
+.question {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-content: center;
+    border-bottom: 1px solid #efedef;
+    width: 100%;
+}
+
+    .question div {
+        margin: 10px;
+    }
+
+.div-nb, .nb-answers {
+    flex: 15%;
+}
+
+.titre {
+    flex: 60%;
+}
+
+.div-categorie {
+    flex: 25%;
+}
