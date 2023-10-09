@@ -2,9 +2,13 @@
     ViewData["Title"] = "Home";
 }
 
-<partial name="../Shared/Nav_connected.cshtml" />
-<partial name="../Shared/Nav_non_connected.cshtml" />
+@if ( ViewData["iduser"]== null){
+    <partial name="../Shared/Nav_non_connected.cshtml" />
 
+}else{
+    <partial name="../Shared/Nav_connected.cshtml" />
+
+}
 
 <div class="div-accueil">
 

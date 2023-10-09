@@ -26,6 +26,7 @@ namespace Forum_descussion_ASP.NET_core_mvc.Controllers
         // GET: all Question for details 
         public async Task<IActionResult> Index()
         {
+            ViewData["iduser"] = HttpContext.Session.GetInt32("iduser");
             var forumContext = _context.QuestionModel.ToListAsync();
             return View(await forumContext);
         }
@@ -33,6 +34,8 @@ namespace Forum_descussion_ASP.NET_core_mvc.Controllers
 
         public async Task<IActionResult> LeursQuestions(int? id)
         {
+            ViewData["iduser"] = HttpContext.Session.GetInt32("iduser");
+
             if (id == null || _context.QuestionModel == null)
             {
                 return NotFound();
@@ -74,6 +77,8 @@ namespace Forum_descussion_ASP.NET_core_mvc.Controllers
         // GET: QuestionModels/Details/5
         public async Task<IActionResult> Details(int? id)
         {
+            ViewData["iduser"] = HttpContext.Session.GetInt32("iduser");
+
             if (id == null || _context.QuestionModel == null)
             {
                 return NotFound();

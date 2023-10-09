@@ -1,4 +1,7 @@
-﻿@model IEnumerable<Forum_descussion_ASP.NET_core_mvc.Models.QuestionModel>
+﻿@using Microsoft.AspNetCore.Http
+
+@model IEnumerable<Forum_descussion_ASP.NET_core_mvc.Models.QuestionModel>
+
 
 @{
     ViewData["Title"] = "Index";
@@ -6,9 +9,15 @@
 
 
 <link rel="stylesheet" href="css/questions.css" />
-<partial name="../Shared/Nav_non_connected.cshtml" />
-<partial name="../Shared/Nav_connected.cshtml" />
 
+
+@if ( ViewData["iduser"]== null){
+    <partial name="../Shared/Nav_non_connected.cshtml" />
+
+}else{
+    <partial name="../Shared/Nav_connected.cshtml" />
+
+}
 
 
 <h1>
@@ -27,7 +36,6 @@
     <button id="btn-nouveau">Nouveau</button>
 </div>
 
-
 <div id="div-nn-repondu">
     <div class="div-liste-questions">
 
@@ -38,7 +46,7 @@
        </a> *@
            
         <div class="question">
-                @item.UserId
+              
             <div class="div-nb">
                 <div>
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" color="green" fill="currentColor" class="bi bi-caret-up-fill" viewBox="0 0 16 16">

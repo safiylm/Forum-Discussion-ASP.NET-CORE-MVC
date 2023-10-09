@@ -3,8 +3,17 @@
 @{
     ViewData["Title"] = "Details";
 }
-<partial name="../Shared/Nav_connected.cshtml" />
-<partial name="../Shared/Nav_not_connected.cshtml" />
+
+@if (ViewData["iduser"] == null)
+{
+    <partial name="../Shared/Nav_non_connected.cshtml" />
+
+}
+else
+{
+    <partial name="../Shared/Nav_connected.cshtml" />
+
+}
 
 
 <h1>

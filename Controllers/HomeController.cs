@@ -15,13 +15,12 @@ namespace Forum_descussion_ASP.NET_core_mvc.Controllers
 
         public IActionResult Index()
         {
+            ViewData["iduser"] = HttpContext.Session.GetInt32("iduser");
+
             return View();
         }
 
-        public IActionResult Privacy()
-        {
-            return View();
-        }
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

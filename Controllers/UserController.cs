@@ -140,7 +140,8 @@ namespace Forum_descussion_ASP.NET_core_mvc.Controllers
 
         public async Task<IActionResult> List()
         {
-           
+            ViewData["iduser"] = HttpContext.Session.GetInt32("iduser");
+
             return _context.UserModel != null ?
                  View(await _context.UserModel.ToListAsync()) :
                    Problem("Entity set 'ForumContext.UserModel'  is null.");

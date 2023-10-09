@@ -7,10 +7,16 @@
 
 <link rel="stylesheet" href="~/css/questions.css" />
 
-<partial name="../Shared/Nav_connected.cshtml" />
-<partial name="../Shared/Nav_not_connected.cshtml" />
+@if (ViewData["iduser"] == null)
+{
+    <partial name="../Shared/Nav_non_connected.cshtml" />
 
+}
+else
+{
+    <partial name="../Shared/Nav_connected.cshtml" />
 
+}
 <div class="div-btn-choix">
     <a id="btn-mes-questions">Mes Questions </a>
     
