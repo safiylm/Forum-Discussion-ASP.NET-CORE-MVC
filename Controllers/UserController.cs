@@ -33,7 +33,7 @@ namespace Forum_descussion_ASP.NET_core_mvc.Controllers
             }
             else
             {
-                return RedirectToAction("Mesquestions", "Question", new { id = HttpContext.Session.GetInt32("id") });
+                return RedirectToAction("Mesquestions", "Question");
 
             }
         }
@@ -75,9 +75,10 @@ namespace Forum_descussion_ASP.NET_core_mvc.Controllers
             }
             else
             {
-                return RedirectToAction("Mesquestions", "Question", new { id = HttpContext.Session.GetInt32("id") });
+                return RedirectToAction("Mesquestions", "Question");
             }
         }
+
 
         public async Task<IActionResult> Connexion(UserModel userModel)
         {
