@@ -15,7 +15,7 @@
     <div class="col-md-4">
         <form asp-action="Edit" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="ID" value="1008"/>
+            <input type="hidden" asp-for="ID" value="@ViewData["iduser"]"/>
             <div class="form-group">
                 <label asp-for="NameUser" class="control-label"></label>
                 <input asp-for="NameUser" class="form-control" />
@@ -39,8 +39,9 @@
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Credential">Back</a>
 </div>
+
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
