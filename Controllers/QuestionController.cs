@@ -99,10 +99,14 @@ namespace Forum_descussion_ASP.NET_core_mvc.Controllers
         // GET: QuestionModels/Create
         public IActionResult Create()
         {
-            //ViewData["UserId"] = new SelectList(_context.Set<UserModel>(), "ID", "ID");
-            ViewData["UserId"] = 1008;
+            if (HttpContext.Session.GetInt32("iduser") != null)
+            {
+                //ViewData["UserId"] = new SelectList(_context.Set<UserModel>(), "ID", "ID");
+                ViewData["iduser"] = HttpContext.Session.GetInt32("iduser");
 
-            return View();
+                return View();
+            }
+            return RedirectToAction("Connexion", "user");
         }
 
         // POST: QuestionModels/Create
@@ -127,18 +131,30 @@ namespace Forum_descussion_ASP.NET_core_mvc.Controllers
         // GET: QuestionModels/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.QuestionModel == null)
-            {
-                return NotFound();
-            }
 
-            var questionModel = await _context.QuestionModel.FindAsync(id);
-            if (questionModel == null)
+            if (HttpContext.Session.GetInt32("iduser") != null)
             {
-                return NotFound();
+                if (id == null || _context.QuestionModel == null)
+                {
+                    return NotFound();
+                }
+                ViewData["iduser"] = HttpContext.Session.GetInt32("iduser");
+                ViewData["idquestion"] = id;
+
+                var questionModel = await _context.QuestionModel.FindAsync(id);
+
+                if (questionModel == null)
+                {
+                    return NotFound();
+                }
+                //  ViewData["UserId"] = new SelectList(_context.Set<UserModel>(), "ID", "ID", questionModel.UserId);
+
+                if (questionModel.UserId == HttpContext.Session.GetInt32("iduser"))
+                return View(questionModel);
+
             }
-            ViewData["UserId"] = new SelectList(_context.Set<UserModel>(), "ID", "ID", questionModel.UserId);
-            return View(questionModel);
+            return RedirectToAction("Connexion", "user");
+           
         }
 
 
@@ -173,7 +189,7 @@ namespace Forum_descussion_ASP.NET_core_mvc.Controllers
                 }
                 return RedirectToAction(nameof(Index));
           //  }
-            ViewData["UserId"] = new SelectList(_context.Set<UserModel>(), "ID", "ID", questionModel.UserId);
+           // ViewData["UserId"] = new SelectList(_context.Set<UserModel>(), "ID", "ID", questionModel.UserId);
             return View(questionModel);
         }
 
