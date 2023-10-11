@@ -48,7 +48,7 @@ namespace Forum_descussion_ASP.NET_core_mvc.Controllers
         // GET: Response/Create
         public IActionResult Create()
         {
-            ViewData["QuestionId"] = new SelectList(_context.QuestionModel, "Id", "Id");
+          //  ViewData["QuestionId"] = new SelectList(_context.QuestionModel, "Id", "Id");
             return View();
         }
 
@@ -64,7 +64,7 @@ namespace Forum_descussion_ASP.NET_core_mvc.Controllers
             {
                 UserId= 5, 
                 QuestionId=5,
-                ResponseContent="aller on va y arriver !!!!!!",
+                ResponseContent= res.ResponseContent,
                 DateCreation = DateTime.Now,
 
             };
@@ -74,7 +74,7 @@ namespace Forum_descussion_ASP.NET_core_mvc.Controllers
                 return RedirectToAction(nameof(Index));
             //}
           //  ViewData["QuestionId"] = new SelectList(_context.QuestionModel, "Id", "Id", responseModel.QuestionId);
-            return View(responseModel);
+          //  return View(responseModel);
         }
 
         // GET: Response/Edit/5

@@ -22,7 +22,7 @@
                 @Html.DisplayNameFor(model => model.DateCreation)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Question)
+                @Html.DisplayNameFor(model => model.QuestionId)
             </th>
             <th></th>
         </tr>
@@ -40,7 +40,7 @@
                 @Html.DisplayFor(modelItem => item.DateCreation)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Question.Id)
+                @Html.DisplayFor(modelItem => item.QuestionId)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
