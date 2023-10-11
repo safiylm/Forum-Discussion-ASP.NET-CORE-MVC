@@ -17,5 +17,6 @@ namespace Forum_descussion_ASP.NET_core_mvc.Data
         public DbSet<QuestionModel> QuestionModel { get; set; } = default!;
 
         public DbSet<UserModel>? UserModel { get; set; }
+        public DbSet<ResponseModel>? ResponseModel { get; set; }
     }
 }

@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<Forum_descussion_ASP.NET_core_mvc.Models.UserModel>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Liste des utilisateurs";
 }
 
 
@@ -16,44 +16,33 @@ else
 
 }
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.NameUser)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Email)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Password)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-            @foreach (var item in Model) {
-        <tr>
-                <td>
-                    <a asp-controller="Question" asp-action="LeursQuestions" asp-route-Id="@item?.ID">
-                @Html.DisplayFor(modelItem => item.NameUser)
-                    </a>
-            </td>
-            <td>
-                <td>
-                    <a asp-controller="Question" asp-action="LeursQuestions" asp-route-Id="@item?.ID">
 
-                @Html.DisplayFor(modelItem => item.Email)</a>
-            </td>
-            <td>
-                <td>
-                    <a asp-controller="Question" asp-action="LeursQuestions" asp-route-Id="@item?.ID">
-
-                                @Html.DisplayFor(modelItem => item.Password) 
-                    </a>
-            </td>
+<div class="div-list-users">
+@foreach (var item in Model) {
+        
+     <a asp-controller="Question" asp-action="LeursQuestions" asp-route-Id="@item?.ID">
+        <svg xmlns="http://www.w3.org/2000/svg" width="46" height="46" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+            <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
+            <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
+        </svg>
+         <p>@Html.DisplayFor(modelItem => item.NameUser)</p> 
+     </a>
           
-        </tr>
+             
 }
-    </tbody>
-</table>
+</div>
+
+<style>
+    .div-list-users{
+        margin:25px;
+        display:flex;
+        flex-wrap:wrap;
+        align-items:center;
+        justify-content:center;
+    }
+    .div-list-users a {
+        color: #696969;
+        text-decoration:none;
+        margin:15px 25px;
+    }
+</style>

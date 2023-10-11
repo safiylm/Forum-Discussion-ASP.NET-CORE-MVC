@@ -4,7 +4,7 @@
 
 namespace Forum_descussion_ASP.NET_core_mvc.Migrations
 {
-    public partial class essai3 : Migration
+    public partial class essai : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

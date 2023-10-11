@@ -12,7 +12,14 @@ namespace Forum_descussion_ASP.NET_core_mvc.Models
         public string Titre { get; set; }
         public string Topic { get; set; }
         public string Description { get; set; }
+        public DateTime DateCreation { get; set; }
+        public bool isResolu { get; set; }
+
         public UserModel User { get; set;  }
 
+       // public List<ResponseModel> ResponseModel { get; set; }
+
+
+
     }
- }
+}

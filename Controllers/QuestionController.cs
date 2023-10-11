@@ -1,14 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
-using Forum_descussion_ASP.NET_core_mvc.Data;
+﻿using Forum_descussion_ASP.NET_core_mvc.Data;
 using Forum_descussion_ASP.NET_core_mvc.Models;
-using Microsoft.CodeAnalysis.FlowAnalysis.DataFlow;
-using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Forum_descussion_ASP.NET_core_mvc.Controllers
 {
@@ -26,15 +19,16 @@ namespace Forum_descussion_ASP.NET_core_mvc.Controllers
         // GET: all Question for details 
         public async Task<IActionResult> Index()
         {
+
             ViewData["iduser"] = HttpContext.Session.GetInt32("iduser");
-            var forumContext = _context.QuestionModel.ToListAsync();
-            return View(await forumContext);
+            var forumContext = await _context.QuestionModel.ToListAsync();
+            return View( forumContext);
         }
 
 
         public async Task<IActionResult> LeursQuestions(int? id)
         {
-            ViewData["iduser"] = HttpContext.Session.GetInt32("iduser");
+           // ViewData["iduser"] = HttpContext.Session.GetInt32("iduser");
 
             if (id == null || _context.QuestionModel == null)
             {
@@ -42,15 +36,15 @@ namespace Forum_descussion_ASP.NET_core_mvc.Controllers
             }
             var forumContext = await _context.QuestionModel.Where(x => x.UserId == id).ToListAsync();
 
-                if (forumContext == null) return NotFound();
+            if (forumContext == null) return NotFound();
 
-                return View(forumContext);
-          
-            return RedirectToAction("Index");
+            return View(forumContext);
+
         }
 
 
-        public async Task<IActionResult> MesQuestions( ) {
+        public async Task<IActionResult> MesQuestions()
+        {
             if (HttpContext.Session.GetInt32("iduser") != null)
             {
                 var forumContext = await _context.QuestionModel
@@ -61,7 +55,7 @@ namespace Forum_descussion_ASP.NET_core_mvc.Controllers
                 return View(forumContext);
             }
             return RedirectToAction("Connexion", "user");
-          
+
 
         }
 
@@ -87,10 +81,16 @@ namespace Forum_descussion_ASP.NET_core_mvc.Controllers
             var questionModel = await _context.QuestionModel
                 .Include(q => q.User)
                 .FirstOrDefaultAsync(m => m.Id == id);
+
             if (questionModel == null)
             {
                 return NotFound();
             }
+
+            var u = await _context.UserModel.FirstOrDefaultAsync(
+                m => m.ID == questionModel.UserId);
+
+            ViewData["NameUser"] = u.NameUser;
 
             return View(questionModel);
         }
@@ -115,12 +115,12 @@ namespace Forum_descussion_ASP.NET_core_mvc.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         //
-        public async Task<IActionResult> Create([Bind("Id,UserId,Titre,Topic,Description")] QuestionModel questionModel)
+        public async Task<IActionResult> Create([Bind("Id,UserId,Titre,Topic,Description, DateCreation")] QuestionModel questionModel)
         {
             //if (ModelState.IsValid) {
 
-                _context.QuestionModel.Add(questionModel);
-                await _context.SaveChangesAsync();          //}
+            _context.QuestionModel.Add(questionModel);
+            await _context.SaveChangesAsync();          //}
 
 
             return RedirectToAction(nameof(Index));
@@ -150,11 +150,11 @@ namespace Forum_descussion_ASP.NET_core_mvc.Controllers
                 //  ViewData["UserId"] = new SelectList(_context.Set<UserModel>(), "ID", "ID", questionModel.UserId);
 
                 if (questionModel.UserId == HttpContext.Session.GetInt32("iduser"))
-                return View(questionModel);
+                    return View(questionModel);
 
             }
             return RedirectToAction("Connexion", "user");
-           
+
         }
 
 
@@ -163,53 +163,60 @@ namespace Forum_descussion_ASP.NET_core_mvc.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,UserId,Titre,Topic,Description")] QuestionModel questionModel)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,UserId,Titre,Topic,Description, DateCreation")] QuestionModel questionModel)
         {
             if (id != questionModel.Id)
             {
                 return NotFound();
             }
 
-           // if (ModelState.IsValid) {
-                try
+            // if (ModelState.IsValid) {
+            try
+            {
+                _context.Update(questionModel);
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!QuestionModelExists(questionModel.Id))
                 {
-                    _context.Update(questionModel);
-                    await _context.SaveChangesAsync();
+                    return NotFound();
                 }
-                catch (DbUpdateConcurrencyException)
+                else
                 {
-                    if (!QuestionModelExists(questionModel.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
+                    throw;
                 }
-                return RedirectToAction(nameof(Index));
-          //  }
-           // ViewData["UserId"] = new SelectList(_context.Set<UserModel>(), "ID", "ID", questionModel.UserId);
+            }
+            return RedirectToAction(nameof(Index));
+            //  }
+            // ViewData["UserId"] = new SelectList(_context.Set<UserModel>(), "ID", "ID", questionModel.UserId);
             return View(questionModel);
         }
 
         // GET: QuestionModels/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.QuestionModel == null)
+            if (HttpContext.Session.GetInt32("iduser") != null)
             {
-                return NotFound();
-            }
+                if (id == null || _context.QuestionModel == null)
+                {
+                    return NotFound();
+                }
 
-            var questionModel = await _context.QuestionModel
-                .Include(q => q.User)
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (questionModel == null)
-            {
-                return NotFound();
-            }
+                var questionModel = await _context.QuestionModel
+                    .Include(q => q.User)
+                    .FirstOrDefaultAsync(m => m.Id == id);
+                if (questionModel == null)
+                {
+                    return NotFound();
+                }
 
-            return View(questionModel);
+
+                if (questionModel.UserId == HttpContext.Session.GetInt32("iduser"))
+
+                    return View(questionModel);
+            }
+            return RedirectToAction("connexion", "user");
         }
 
         // POST: QuestionModels/Delete/5
@@ -226,14 +233,14 @@ namespace Forum_descussion_ASP.NET_core_mvc.Controllers
             {
                 _context.QuestionModel.Remove(questionModel);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool QuestionModelExists(int id)
         {
-          return (_context.QuestionModel?.Any(e => e.Id == id)).GetValueOrDefault();
+            return (_context.QuestionModel?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

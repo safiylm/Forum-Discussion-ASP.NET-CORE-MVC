@@ -4,6 +4,7 @@ using Forum_descussion_ASP.NET_core_mvc.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Forum_descussion_ASP.NET_core_mvc.Migrations
 {
     [DbContext(typeof(ForumContext))]
-    partial class ForumContextModelSnapshot : ModelSnapshot
+    [Migration("20231011170341_essai")]
+    partial class essai
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -48,7 +50,7 @@ namespace Forum_descussion_ASP.NET_core_mvc.Migrations
                     b.Property<int>("UserId")
                         .HasColumnType("int");
 
-                    b.Property<bool>("isResolu")
+                    b.Property<bool>("isRepondu")
                         .HasColumnType("bit");
 
                     b.HasKey("Id");
@@ -66,6 +68,9 @@ namespace Forum_descussion_ASP.NET_core_mvc.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
 
+                    b.Property<int>("AuteurID")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("DateCreation")
                         .HasColumnType("datetime2");
 
@@ -81,9 +86,9 @@ namespace Forum_descussion_ASP.NET_core_mvc.Migrations
 
                     b.HasKey("ID");
 
-                    b.HasIndex("QuestionId");
+                    b.HasIndex("AuteurID");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("QuestionId");
 
                     b.ToTable("ResponseModel");
                 });
@@ -129,21 +134,21 @@ namespace Forum_descussion_ASP.NET_core_mvc.Migrations
 
             modelBuilder.Entity("Forum_descussion_ASP.NET_core_mvc.Models.ResponseModel", b =>
                 {
+                    b.HasOne("Forum_descussion_ASP.NET_core_mvc.Models.UserModel", "Auteur")
+                        .WithMany()
+                        .HasForeignKey("AuteurID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("Forum_descussion_ASP.NET_core_mvc.Models.QuestionModel", "Question")
                         .WithMany()
                         .HasForeignKey("QuestionId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Forum_descussion_ASP.NET_core_mvc.Models.UserModel", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.Navigation("Auteur");
 
                     b.Navigation("Question");
-
-                    b.Navigation("User");
                 });
 #pragma warning restore 612, 618
         }
