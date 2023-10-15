@@ -7,7 +7,6 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Forum_descussion_ASP.NET_core_mvc.Data;
 using Forum_descussion_ASP.NET_core_mvc.Models;
-using Microsoft.AspNetCore.Http;
 
 namespace Forum_descussion_ASP.NET_core_mvc.Controllers
 {
@@ -19,7 +18,6 @@ namespace Forum_descussion_ASP.NET_core_mvc.Controllers
         {
             _context = context;
         }
-
 
         // GET: Inscription
         [HttpGet]
@@ -47,14 +45,15 @@ namespace Forum_descussion_ASP.NET_core_mvc.Controllers
             {
                 if (userModel != null)
                 {
-                    
-                     _context.UserModel.Add(userModel);
+
+                    _context.UserModel.Add(userModel);
                     await _context.SaveChangesAsync();
                     return RedirectToAction("Connexion");
 
                 }
-               
-            }else
+
+            }
+            else
             {
                 return RedirectToAction("index", "Question");
 
@@ -62,7 +61,7 @@ namespace Forum_descussion_ASP.NET_core_mvc.Controllers
             return View();
         }
 
-      
+
 
 
 
@@ -91,7 +90,7 @@ namespace Forum_descussion_ASP.NET_core_mvc.Controllers
                 }
 
                 var user = await _context.UserModel
-                    .FirstOrDefaultAsync(m => m.Email == userModel.Email) ;
+                    .FirstOrDefaultAsync(m => m.Email == userModel.Email);
 
                 if (user == null)
                 {
@@ -99,7 +98,7 @@ namespace Forum_descussion_ASP.NET_core_mvc.Controllers
                 }
                 else if (user.Password == userModel.Password)
                 {
-                    HttpContext.Session.SetInt32("iduser", user.ID);
+                    HttpContext.Session.SetInt32("iduser", user.Id);
                     HttpContext.Session.SetString("NameUser", user.NameUser);
                     HttpContext.Session.SetString("Email", userModel.Email);
                     HttpContext.Session.SetString("Password", userModel.Password);
@@ -113,30 +112,32 @@ namespace Forum_descussion_ASP.NET_core_mvc.Controllers
 
 
 
-        // GET: UserModels/Index/5
+
         public async Task<IActionResult> Credential()
         {
             if (HttpContext.Session.GetInt32("iduser") != null)
             {
-                if ( _context.UserModel == null)
+                if (_context.UserModel == null)
                 {
                     return NotFound();
                 }
 
                 var userModel = await _context.UserModel
-                    .FirstOrDefaultAsync(m => m.ID == HttpContext.Session.GetInt32("iduser") );
+                    .FirstOrDefaultAsync(m => m.Id == HttpContext.Session.GetInt32("iduser"));
                 if (userModel == null)
                 {
                     return NotFound();
                 }
 
-                if (userModel.ID == HttpContext.Session.GetInt32("iduser")) 
+                if (userModel.Id == HttpContext.Session.GetInt32("iduser"))
                     return View(userModel);
             }
             return RedirectToAction("Connexion");
 
 
         }
+
+
 
         public async Task<IActionResult> List()
         {
@@ -145,36 +146,40 @@ namespace Forum_descussion_ASP.NET_core_mvc.Controllers
             return _context.UserModel != null ?
                  View(await _context.UserModel.ToListAsync()) :
                    Problem("Entity set 'ForumContext.UserModel'  is null.");
-        
-          
+
+
 
         }
+
+
+   
 
         [HttpGet]
         // GET: UserModels/Edit/5
         public async Task<IActionResult> Edit()
         {
+            if (_context.UserModel == null)
+            {
+                return NotFound();
+            }
+
             if (HttpContext.Session.GetInt32("iduser") != null)
             {
-                if ( _context.UserModel == null)
-                {
-                    return NotFound();
-                }
-
+               
                 ViewData["iduser"] = HttpContext.Session.GetInt32("iduser");
 
-                var userModel = await _context.UserModel.FindAsync( HttpContext.Session.GetInt32("iduser"));
+                var userModel = await _context.UserModel.FindAsync(HttpContext.Session.GetInt32("iduser"));
                 if (userModel == null)
                 {
                     return NotFound();
                 }
-                if (userModel.ID == HttpContext.Session.GetInt32("iduser")) //user can see only his data 
+                if (userModel.Id == HttpContext.Session.GetInt32("iduser")) //user can see only his data 
 
                     return View(userModel);
 
             }
             return RedirectToAction("Connexion");
-    }
+        }
 
 
 
@@ -183,24 +188,21 @@ namespace Forum_descussion_ASP.NET_core_mvc.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit( [Bind("ID, NameUser,Email,Password")] UserModel userModel)
+        public async Task<IActionResult> Edit([Bind(" Id,NameUser,Email,Password")] UserModel userModel)
         {
+         
             if (HttpContext.Session.GetInt32("iduser") != null)
             {
-                if (HttpContext.Session.GetInt32("iduser") == null)
-            {
-                return NotFound();
-            }
 
                 //    if (ModelState.IsValid)//  {
-             
-                _context.Update(userModel);
+                if (userModel == null) return NotFound();
+
+                _context.UserModel.Update(userModel);
                 await _context.SaveChangesAsync();
-                   
-               
-            
+                return RedirectToAction("Credential");
+
+
                 //  }
-                    return View(userModel);
             }
             return RedirectToAction("Connexion");
         }
@@ -211,23 +213,26 @@ namespace Forum_descussion_ASP.NET_core_mvc.Controllers
         {
             if (HttpContext.Session.GetInt32("iduser") != null)
             {
-                if ( _context.UserModel == null)
+                if (_context.UserModel == null)
                 {
                     return NotFound();
                 }
+
                 ViewData["iduser"] = HttpContext.Session.GetInt32("iduser");
 
+
                 var userModel = await _context.UserModel
-                    .FirstOrDefaultAsync(m => m.ID == HttpContext.Session.GetInt32("iduser"));
-                
+                    .FirstOrDefaultAsync(m => m.Id == HttpContext.Session.GetInt32("iduser"));
+
                 if (userModel == null)
                 {
                     return NotFound();
                 }
-                if (userModel.ID == HttpContext.Session.GetInt32("iduser"))
+                if (userModel.Id == HttpContext.Session.GetInt32("iduser"))
 
                     return View(userModel);
             }
+
             return RedirectToAction("Connexion");
         }
 
@@ -245,12 +250,9 @@ namespace Forum_descussion_ASP.NET_core_mvc.Controllers
                 }
 
                 var userModel = await _context.UserModel.FindAsync(HttpContext.Session.GetInt32("iduser"));
-                if (userModel != null)
+                if (userModel != null && userModel.Id == HttpContext.Session.GetInt32("iduser"))
                 {
                     _context.UserModel.Remove(userModel);
-                }
-                if (userModel.ID == HttpContext.Session.GetInt32("iduser"))
-                {
                     await _context.SaveChangesAsync();
                     return RedirectToAction("Logout", "Home");
                 }
@@ -260,9 +262,9 @@ namespace Forum_descussion_ASP.NET_core_mvc.Controllers
 
         private bool UserModelExists(int id)
         {
-            return (_context.UserModel?.Any(e => e.ID == id)).GetValueOrDefault();
+            return (_context.UserModel?.Any(e => e.Id == id)).GetValueOrDefault();
         }
 
-     
+
     }
 }

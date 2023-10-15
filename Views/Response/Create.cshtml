@@ -13,8 +13,7 @@
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 
-            <input  type="hidden" asp-for="UserId" />
-                <input type="hidden" asp-for="QuestionId" />
+            <input type="hidden" asp-for="QuestionId" value="@ViewData["idquestion"]" />
            
                 <div class="form-group">
                 <label asp-for="ResponseContent" class="control-label"></label>

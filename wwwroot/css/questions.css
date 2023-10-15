@@ -4,6 +4,8 @@ body {
     background-color: whitesmoke;
 }
 
+
+
 h1 {
     font-size: 18px;
 }
@@ -90,9 +92,10 @@ h1 {
 }
 
 .titre {
-    flex: 60%;
+    flex: 50%;
 }
 
 .div-categorie {
     flex: 25%;
 }
+

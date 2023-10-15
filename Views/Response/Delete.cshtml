@@ -11,12 +11,7 @@
     <h4>ResponseModel</h4>
     <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.UserId)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.UserId)
-        </dd>
+    
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.ResponseContent)
         </dt>
@@ -29,16 +24,11 @@
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.DateCreation)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.QuestionId)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.QuestionId)
-        </dd>
+    
     </dl>
     
     <form asp-action="Delete">
-        <input type="hidden" asp-for="ID" />
+        <input type="hidden" asp-for="Id" />
         <input type="submit" value="Delete" class="btn btn-danger" /> |
         <a asp-action="Index">Back to List</a>
     </form>

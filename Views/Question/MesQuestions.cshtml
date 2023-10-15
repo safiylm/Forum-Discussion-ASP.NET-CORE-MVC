@@ -77,10 +77,15 @@
                 <p> 7,123</p>
             </div>
 
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> 
+            <div class="div-edit">
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+            </div>
 
+             <div class="div-delete">
                 <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-        </div>
+            </div>
+
+         </div>
         }
       </div>
    </div>
@@ -98,3 +103,19 @@
 
 
 </script>
+
+
+<style>
+    a {
+        text-decoration: none;
+        color: dimgrey;
+    }
+
+    .div-edit, .div-delete {
+        flex: 5%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+</style>

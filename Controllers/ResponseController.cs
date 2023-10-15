@@ -20,36 +20,26 @@ namespace Forum_descussion_ASP.NET_core_mvc.Controllers
         }
 
         // GET: Response
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int? id)
         {
-            var forumContext = _context.ResponseModel;
-            return View(await forumContext.ToListAsync());
-        }
-
-        // GET: Response/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null || _context.ResponseModel == null)
-            {
-                return NotFound();
-            }
-
-            var responseModel = await _context.ResponseModel
-             //   .Include(r => r.Question)
-                .FirstOrDefaultAsync(m => m.ID == id);
-            if (responseModel == null)
-            {
-                return NotFound();
-            }
-
-            return View(responseModel);
+            var forumContext = _context.ResponseModel.Include(r => r.Question).
+                Include(r => r.User).Where(x => x.QuestionId == id).ToListAsync();
+            return View(await forumContext);
         }
 
         // GET: Response/Create
-        public IActionResult Create()
+        public IActionResult Create(int? id)
         {
-          //  ViewData["QuestionId"] = new SelectList(_context.QuestionModel, "Id", "Id");
-            return View();
+            if (HttpContext.Session.GetInt32("iduser") != null)
+            {
+                ViewData["idquestion"] = id;
+
+                ViewData["QuestionId"] = new SelectList(_context.QuestionModel, "Id", "Id");
+                ViewData["UserId"] = new SelectList(_context.UserModel, "Id", "Id");
+                return View();
+            }
+            return RedirectToAction("Connexion", "user");
+
         }
 
         // POST: Response/Create
@@ -57,24 +47,22 @@ namespace Forum_descussion_ASP.NET_core_mvc.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ResponseContent")] ResponseModel res)
+        public async Task<IActionResult> Create([Bind("QuestionId,ResponseContent")] ResponseModel responseModel)
         {
-            //  if (ModelState.IsValid){
-            ResponseModel responseModel = new ResponseModel
+          
+            responseModel.UserId = (int)HttpContext.Session.GetInt32("iduser");
+            responseModel.DateCreation = DateTime.Now;
+            if (responseModel != null)
             {
-                UserId= 5, 
-                QuestionId=5,
-                ResponseContent= res.ResponseContent,
-                DateCreation = DateTime.Now,
-
-            };
-
-                _context.ResponseModel.Add(responseModel);
+                _context.Add(responseModel);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            //}
-          //  ViewData["QuestionId"] = new SelectList(_context.QuestionModel, "Id", "Id", responseModel.QuestionId);
-          //  return View(responseModel);
+                return RedirectToAction("details", "question", new { id = responseModel.QuestionId });
+
+            }
+
+            ViewData["QuestionId"] = new SelectList(_context.QuestionModel, "Id", "Id", responseModel.QuestionId);
+            ViewData["UserId"] = new SelectList(_context.UserModel, "Id", "Id", responseModel.UserId);
+            return View(responseModel);
         }
 
         // GET: Response/Edit/5
@@ -85,13 +73,22 @@ namespace Forum_descussion_ASP.NET_core_mvc.Controllers
                 return NotFound();
             }
 
-            var responseModel = await _context.ResponseModel.FindAsync(id);
-            if (responseModel == null)
+            if (HttpContext.Session.GetInt32("iduser") != null)
             {
-                return NotFound();
+                var responseModel = await _context.ResponseModel.FindAsync(id);
+                if (responseModel == null)
+                {
+                    return NotFound();
+                }
+                ViewData["ResponseId"] =id;
+
+                ViewData["QuestionId"] = responseModel.QuestionId;
+                //ViewData["QuestionId"] = new SelectList(_context.QuestionModel, "Id", "Id", responseModel.QuestionId);
+                ViewData["UserId"] = HttpContext.Session.GetInt32("iduser");
+                return View(responseModel);
             }
-            ViewData["QuestionId"] = new SelectList(_context.QuestionModel, "Id", "Id", responseModel.QuestionId);
-            return View(responseModel);
+            return RedirectToAction("Connexion", "user");
+
         }
 
         // POST: Response/Edit/5
@@ -99,23 +96,25 @@ namespace Forum_descussion_ASP.NET_core_mvc.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,UserId,QuestionId,ResponseContent,DateCreation")] ResponseModel responseModel)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,UserId,QuestionId,ResponseContent,DateCreation")] ResponseModel responseModel)
         {
-            if (id != responseModel.ID)
+            if (id != responseModel.Id)
             {
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
+            if (HttpContext.Session.GetInt32("iduser") != null)
             {
                 try
                 {
-                    _context.Update(responseModel);
+                    _context.ResponseModel.Update(responseModel);
                     await _context.SaveChangesAsync();
+                    return RedirectToAction("Details", "Question", new { id = responseModel.QuestionId });
+
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!ResponseModelExists(responseModel.ID))
+                    if (!ResponseModelExists(responseModel.Id))
                     {
                         return NotFound();
                     }
@@ -124,10 +123,14 @@ namespace Forum_descussion_ASP.NET_core_mvc.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+
             }
-            ViewData["QuestionId"] = new SelectList(_context.QuestionModel, "Id", "Id", responseModel.QuestionId);
-            return View(responseModel);
+
+            return RedirectToAction("Connexion", "User");
+
+           // ViewData["QuestionId"] = new SelectList(_context.QuestionModel, "Id", "Id", responseModel.QuestionId);
+           // ViewData["UserId"] = new SelectList(_context.UserModel, "Id", "Id", responseModel.UserId);
+           // return View(responseModel);
         }
 
         // GET: Response/Delete/5
@@ -137,16 +140,22 @@ namespace Forum_descussion_ASP.NET_core_mvc.Controllers
             {
                 return NotFound();
             }
+            if (HttpContext.Session.GetInt32("iduser") != null)
+            {
 
-            var responseModel = await _context.ResponseModel
-               // .Include(r => r.Question)
-                .FirstOrDefaultAsync(m => m.ID == id);
+                var responseModel = await _context.ResponseModel
+                .Include(r => r.Question)
+                .Include(r => r.User)
+                .FirstOrDefaultAsync(m => m.Id == id);
             if (responseModel == null)
             {
                 return NotFound();
             }
 
             return View(responseModel);
+            }
+
+            return RedirectToAction("Connexion", "user");
         }
 
         // POST: Response/Delete/5
@@ -158,19 +167,24 @@ namespace Forum_descussion_ASP.NET_core_mvc.Controllers
             {
                 return Problem("Entity set 'ForumContext.ResponseModel'  is null.");
             }
-            var responseModel = await _context.ResponseModel.FindAsync(id);
+            if (HttpContext.Session.GetInt32("iduser") != null)
+            {
+                var responseModel = await _context.ResponseModel.FindAsync(id);
             if (responseModel != null)
             {
                 _context.ResponseModel.Remove(responseModel);
             }
             
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+                return RedirectToAction("details", "question", new { id = responseModel.QuestionId });
+            }
+
+            return RedirectToAction("Connexion", "user");
         }
 
         private bool ResponseModelExists(int id)
         {
-          return (_context.ResponseModel?.Any(e => e.ID == id)).GetValueOrDefault();
+          return (_context.ResponseModel?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

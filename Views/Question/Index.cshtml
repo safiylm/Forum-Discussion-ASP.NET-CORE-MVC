@@ -33,7 +33,6 @@
 <div class="div-btn-">
     <button id="btn-nn-repondu">Non répondu</button>
     <button id="btn-resolu">Résolu</button>
-    <button id="btn-nouveau">Nouveau</button>
 </div>
 
 <div class="div-list-question-and-user">
@@ -109,7 +108,6 @@
 
 <script>
     $("#div-resolu").hide()
-    $("#div-nouveau").hide()
     $(".div-btn- button").css("color", "#7b8598");
     $(".div-btn- button").css("background-color", "transparent");
     $("#btn-nn-repondu").css("color", "#f3ebff");
@@ -118,7 +116,6 @@
     $("#btn-nn-repondu").click(function () {
         $("#div-nn-repondu").show()
         $("#div-resolu").hide()
-        $("#div-nouveau").hide()
         $(".div-btn- button").css("color", "#7b8598");
         $(".div-btn- button").css("background-color", "transparent");
         $("#btn-nn-repondu").css("color", "#f3ebff");
@@ -128,16 +125,12 @@
     $("#btn-resolu").click(function () {
         $("#div-nn-repondu").hide()
         $("#div-resolu").show()
-        $("#div-nouveau").hide()
         $(".div-btn- button").css("color", "#7b8598");
         $(".div-btn- button").css("background-color", "transparent");
         $("#btn-resolu").css("background-color", "#9a7ce3");
         $("#btn-resolu").css("color", "#f3ebff");
     })
-    $("#btn-nouveau").click(function () {
-        document.location.href = 'Question/Create'
-          
-    })
+  
 
 </script>
 

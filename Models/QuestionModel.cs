@@ -17,7 +17,7 @@ namespace Forum_descussion_ASP.NET_core_mvc.Models
 
         public UserModel User { get; set;  }
 
-       // public List<ResponseModel> ResponseModel { get; set; }
+        public List<ResponseModel> ResponseModel { get; set; }
 
 
 
