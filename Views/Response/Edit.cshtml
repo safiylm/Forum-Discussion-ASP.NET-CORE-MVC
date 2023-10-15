@@ -3,6 +3,10 @@
 @{
     ViewData["Title"] = "Edit";
 }
+<div class="container">
+    <main role="main" class="pb-3">
+
+
 
 <h1>Edit</h1>
 
@@ -35,6 +39,8 @@
     <a asp-controller="Question" asp-action="Details" asp-route-id="@ViewData["QuestionId"]">Back to List</a>
 </div>
 
+</main>
+</div>
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }

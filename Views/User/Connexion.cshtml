@@ -5,11 +5,17 @@
 
 <partial name="../Shared/Nav_non_connected.cshtml" />
 
+<div class="container">
+    <main role="main" class="pb-3">
+
 
 <div class="div-auth">
     <h1>Connexion</h1></br>
     <form asp-action="connexion" method="post">
+        <label asp-for="Email" class="control-label"></label>
         <input type="text" asp-for="Email" placeholder="email" class="form-control" value="Berat@gmail.com" />
+        
+        <label asp-for="Password" class="control-label"></label>
         <input type="password" asp-for="Password" placeholder="password" class="form-control" value="Comedy"/>
         <button type="submit" class="btn-primary"> Se connecter  </button>
 
@@ -17,4 +23,5 @@
   
 </div>
 
-
+</main>
+</div>

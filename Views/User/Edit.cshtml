@@ -6,6 +6,9 @@
 
 <partial name="../Shared/Nav_connected.cshtml" />
 
+<div class="container">
+    <main role="main" class="pb-3">
+
 
 <h1>Edit</h1>
 
@@ -41,8 +44,8 @@
 <div>
     <a asp-action="Credential">Back</a>
 </div>
-
-
+</main>
+</div>
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
