@@ -74,6 +74,10 @@
                                         @Html.DisplayFor(modelItem => item.Description)
                                     </a>
                                 </p>
+                                     <a asp-controller="Question" asp-action="LeursQuestions" asp-route-Id="@item.UserId">
+
+                                     @Html.DisplayFor(modelItem => item.User.NameUser)
+                                     </a>
                             </a>
                         </div>
 
@@ -106,6 +110,14 @@
     </div>
 
 </div>
+
+        </br>
+        </br>
+        </br>
+        </br>
+        </br>
+        </br>
+        </br>
 
 </main></div>
 
