@@ -12,16 +12,62 @@
 <div class="div-auth">
     <h1>Connexion</h1></br>
     <form asp-action="connexion" method="post">
+                <div class="form-group">
+
         <label asp-for="Email" class="control-label"></label>
-        <input type="text" asp-for="Email" placeholder="email" class="form-control" value="Berat@gmail.com" />
-        
+        <input type="text" asp-for="Email" placeholder="email" class="form-control" value="anastasia@gmail.com" />
+        </div>
+                <div class="form-group">
+
         <label asp-for="Password" class="control-label"></label>
-        <input type="password" asp-for="Password" placeholder="password" class="form-control" value="Comedy"/>
-                <button type="submit" class="btn btn-primary"> Se connecter  </button>
+                <input type="password" asp-for="Password" placeholder="password" class="form-control" value="Anastasia1*" />
+        </div>
+               
+                <div class="form-group">
+                    <input type="submit" value="Se Sonnecter" class="btn btn-secondary" style="background-color:#455e6a; color:white;" />
+                </div>
 
     </form>
   
 </div>
+
+        <style>
+
+            body {
+                background-color: #455e6a;
+            }
+
+            .div-auth {
+                width: 450px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                margin: 100px auto;
+                background-color:white;
+                padding : 30px;
+                border-radius: 12px;
+            }
+
+                .div-auth form {
+                    width: 100%;
+
+                }
+
+                .div-auth .form-group{
+                    margin-bottom: 17px;
+                }
+
+                    .div-auth .form-group * {
+                        margin: 2px 0;
+                    }
+
+
+            .div-auth input{
+            width:100%;
+            }
+
+        </style>
 
 </main>
 </div>

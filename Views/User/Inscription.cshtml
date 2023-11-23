@@ -6,15 +6,14 @@
 
 <partial name="../Shared/Nav_non_connected.cshtml" />
 
-<div class="container">
-    <main role="main" class="pb-3">
+                <div class="container">
+                    <main role="main" class="pb-3">
 
 
-<h1>Inscription</h1>
+                        <div class="div-auth">
+                            <h1>Inscription</h1>
 
-<hr />
-<div class="row">
-    <div class="col-md-4">
+
         <form asp-action="Inscription" method="post" >
             <div class="form-group">
                 <label asp-for="NameUser" class="control-label"></label>
@@ -28,18 +27,117 @@
             </div>
             <div class="form-group">
                 <label asp-for="Password" class="control-label"></label>
-                <input asp-for="Password" class="form-control" value="123456"/>
+                        <input asp-for="Password" class="form-control" value="123456" id="password1" onkeyup="checkpassword(value)" />
                 <span asp-validation-for="Password" class="text-danger"></span>
+                        <div id="info-pwd"></div>
             </div>
+
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <label class="control-label"> Confirmer votre mot de passe </label>
+                <input class="form-control" value="" onChange="checkpasswordidentique(value)" />
+                <span  class="text-danger"></span>
+                <div id="info-pwd2"></div>
             </div>
+
+            <div class="form-group">
+                    <input type="submit" value="S'inscrire" class="btn btn-secondary" style="background-color:#455e6a; color:white;" />
+            </div>
+
         </form>
     </div>
-</div>
 </main>
 </div>
 
+<script>
+    function checkpassword(pwd, pwdconfirmexiste=false) {
+        console.log(pwd)
+    if (pwd.length < 8) {
+            document.getElementById('info-pwd').innerHTML = " Votre mot de passe doit contenir :  <li>Une majuscule</li> <li>Une minuscule</li> " +
+                "<li>Un chiffre</li> <li>Un caractère spécial</li>  <li>Minimum 8 caractères</li> <br /> "
+    } else {
+
+            maj = ""; min = ""; nb = ""; spec = ''; 
+
+                if (pwd.match(/[A-Z]/, 'g')) {
+           
+                maj = ' <img src="/image/check-square-fill.svg"/> '
+                }
+                if (pwd.match(/[a-z]/, 'g')) {
+                min = ' <img src="/image/check-square-fill.svg"/> '
+        
+                }
+                if (pwd.match(/[0-9]/, 'g')) {
+
+                nb = ' <img src="/image/check-square-fill.svg"/> '
+                 }
+                 
+                 if (pwd.match(/[ $|*|-|_|&|+ ]/, 'g')) {
+                
+                spec = ' <img src="/image/check-square-fill.svg"/> '
+
+                     pwdvalid = true
+                        console.log("my password is valid?" + pwdvalid)
+                }
+
+            document.getElementById('info-pwd').innerHTML = 
+            " <li>Une majuscule " + maj +
+            " </li> <li>Une minuscule" + min + "</li> " +
+             "<li>Un chiffre " + nb + "</li> <li>Un caractère spécial " + spec +
+             "</li> <li>Minimum 8 caractères <img src='/image/check-square-fill.svg'/> </li> "
+
+
+        }
+   
+}
+
+    function checkpasswordidentique( pwd2){
+        if (pwd2 === document.getElementById("password1").value )
+            document.getElementById("info-pwd2").innerHTML= "<p> Vos mot de passe sont identiques.</p>"
+        else
+            document.getElementById("info-pwd2").innerHTML= "<p> Vos mots de passe ne sont pas identiques.</p>"
+
+}
+
+</script>
+
+
+
+<style>
+
+   body{
+        background-color: #455e6a;
+    }
+
+  .div-auth {
+                width: 450px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                margin: 50px auto;
+                background-color:white;
+        padding: 30px ;
+        border-radius: 12px;
+            }
+
+    .div-auth form{
+            width: 100%;
+        }
+
+        .div-auth .form-group {
+            margin-bottom: 17px;
+        }
+
+        .div-auth .form-group * {
+            margin: 2px 0;
+        }
+
+    .div-auth input{
+        width:100%;
+    }
+    
+
+</style>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

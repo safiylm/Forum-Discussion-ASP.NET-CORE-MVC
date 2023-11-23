@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Forum_descussion_ASP.NET_core_mvc.Data;
 using Forum_descussion_ASP.NET_core_mvc.Models;
+using System.Security.Policy;
 
 namespace Forum_descussion_ASP.NET_core_mvc.Controllers
 {
@@ -45,7 +46,7 @@ namespace Forum_descussion_ASP.NET_core_mvc.Controllers
             {
                 if (userModel != null)
                 {
-
+                    userModel.Password = SecretHasher.Hash(userModel.Password);
                     _context.UserModel.Add(userModel);
                     await _context.SaveChangesAsync();
                     return RedirectToAction("Connexion");
@@ -92,11 +93,13 @@ namespace Forum_descussion_ASP.NET_core_mvc.Controllers
                 var user = await _context.UserModel
                     .FirstOrDefaultAsync(m => m.Email == userModel.Email);
 
+
                 if (user == null)
                 {
                     return NotFound();
                 }
-                else if (user.Password == userModel.Password)
+
+                else if (SecretHasher.Verify(userModel.Password, user.Password ) )
                 {
                     HttpContext.Session.SetInt32("iduser", user.Id);
                     HttpContext.Session.SetString("NameUser", user.NameUser);
