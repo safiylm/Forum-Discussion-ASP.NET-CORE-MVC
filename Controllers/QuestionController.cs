@@ -85,10 +85,11 @@ namespace Forum_descussion_ASP.NET_core_mvc.Controllers
                 return NotFound();
             }
             ViewData["NameUser"] = questionModel.User.NameUser;
-            ViewData["DateCreation"] = questionModel.DateCreation;
+            ViewData["DateCreation"] = questionModel.DateCreation.ToString("dd/MM/yyyy");
             ViewData["Description"] = questionModel.Description;
             ViewData["Topic"] = questionModel.Topic;
             ViewData["Titre"] = questionModel.Titre;
+            ViewData["isResolu"] = questionModel.isResolu;
 
 
             var forumContext = await _context.ResponseModel.Include(r => r.Question).
@@ -223,6 +224,8 @@ namespace Forum_descussion_ASP.NET_core_mvc.Controllers
             return RedirectToAction("connexion", "user");
         }
 
+
+
         // POST: QuestionModels/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
@@ -246,6 +249,7 @@ namespace Forum_descussion_ASP.NET_core_mvc.Controllers
         {
               return (_context.QuestionModel?.Any(e => e.Id == id)).GetValueOrDefault();
         }
-    
+
+
     }
 }
