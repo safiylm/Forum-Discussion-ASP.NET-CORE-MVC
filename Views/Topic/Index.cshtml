@@ -1,0 +1,66 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+@{
+    ViewData["Title"] = "Topics ";
+}
+
+
+@if (ViewData["iduser"] == null)
+{
+    <partial name="../Shared/Nav_non_connected.cshtml" />
+
+}
+else
+{
+    <partial name="../Shared/Nav_connected.cshtml" />
+
+}
+
+
+<div class="page-list-topic">
+    <h1> Topics </h1>
+    <div class="div-list-topic">
+
+
+    @foreach (var item in Model)
+    {
+            <div class="div-topic"> <a href="/Topic/TopicName?name=@item">@item</a></div>
+    }
+
+    </div>
+</div>
+
+
+<style>
+    .page-list-topic h1 {
+        font-size: 24px;
+        margin: 30px 50px;
+        text-align:center;
+    }
+
+    .div-list-topic{
+        display:flex;
+        flex-direction:row;
+        flex-wrap:wrap;
+        justify-items:center;
+        align-content:center;
+        margin: 30px auto;
+        width : 900px;
+    }
+
+    .div-topic{
+        flex:30%;
+        padding: 30px 20px;
+        background-color: dodgerblue;
+        margin : 15px;
+        border-radius: 12px;
+    }
+
+    .div-topic a{
+        color: white;
+        text-decoration:none;
+    }
+
+</style>
