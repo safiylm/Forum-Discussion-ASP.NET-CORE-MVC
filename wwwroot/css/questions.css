@@ -1,23 +1,26 @@
 
 body {
     background-color: #efedef;
-    background-color: whitesmoke;
+    background-color: #4d1844;
+    background-color: #455e6a;
 }
 
 
 
 h1 {
+    color: white;
     font-size: 18px;
 }
 
     h1 a {
         text-decoration: none;
-        color: black;
+        /*color: black;*/
+        color:white;
     }
 
 .question .titre a, .div-categorie a {
     text-decoration: none;
-    color: dimgrey;
+   color: dimgrey;
 }
 
 .div-btn-, .div-categorie, .div-btn-choix {
@@ -41,6 +44,9 @@ h1 {
         border-radius: 6px;
 }
 
+    .div-btn- button {
+        color: white;
+    }
 .div-liste-questions, .div-nb, .titre, .nb-answers {
     display: flex;
     flex-direction: column;
@@ -56,6 +62,7 @@ h1 {
     border-radius: 15px;
     align-items: center;
     /*max-width:1100px;*/
+    padding-bottom: 20px;
     margin: 20px auto;
 }
 

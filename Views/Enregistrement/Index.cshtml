@@ -1,0 +1,87 @@
+﻿@{
+    ViewData["Title"] = "Mes enregistrements ";
+}
+@model IEnumerable<Forum_descussion_ASP.NET_core_mvc.Models.EnregistrementModel>
+
+@if ( ViewData["iduser"]== null){
+    <partial name="../Shared/Nav_non_connected.cshtml" />
+
+}else{
+    <partial name="../Shared/Nav_connected.cshtml" />
+
+}
+<link rel="stylesheet" href="~/css/questions.css" />
+
+
+<div class="container">
+    <main role="main" class="pb-3">
+
+
+
+        <div class="div-btn-choix">
+            <a id="btn-mes-questions" asp-controller="Question" asp-action="MesQuestions" asp-route-id="@ViewData["iduser"]">Mes Questions </a>
+            <a id="btn-mes-enregistrements" asp-controller="Enregistrement" asp-action="Index" asp-route-id="@ViewData["iduser"]">Mes Enregistrements </a>
+            <a id="btn-mes-donnees-personnelles" asp-controller="User" asp-action="Credential" asp-route-id="2">Mes Données Personelles</a>
+            <a id="btn-nouveau" asp-controller="Question" asp-action="Create">Nouveau</a>
+            <a asp-controller="Home" asp-action="Logout">Se déconnecter </a>
+
+        </div>
+
+        <div id="div-enregistrements"> Liste des enregistrements 
+
+            
+            @foreach (var item in Model) {
+            <div>
+                    @Html.DisplayFor(modelItem => item.UserId)
+            </div>
+
+                <div>
+                    @Html.DisplayFor(modelItem => item.QuestionId)
+                </div>
+
+                <div>
+                    @Html.DisplayFor(modelItem => item.ResponseId)
+                </div>
+            }
+
+        </div>
+    </main>
+</div>
+
+<style>
+    a {
+        text-decoration: none;
+        color: dimgrey;
+    }
+
+    .div-btn-choix a {
+        text-decoration: none;
+        color: white;
+    }
+
+    .btnnn {
+        background-color: #9a7ce3;
+        color: white;
+        padding: 7px 13px;
+        border-radius: 7px;
+    }
+
+    #div-enregistrements{
+        background-color: white;
+        padding : 30px;
+        margin: 20px auto;
+        border-radius: 15px;
+    }
+</style>
+
+
+<script>
+    $("#div-enregistrements").show()
+
+    $(".div-btn-choix button").css("color", "#7b8598");
+    $(".div-btn-choix button").css("background-color", "transparent");
+    $("#btn-mes-enregistrements").css("color", "#f3ebff");
+    $("#btn-mes-enregistrements").css("background-color", "#9a7ce3");
+
+
+</script>

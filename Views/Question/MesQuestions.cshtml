@@ -15,8 +15,11 @@
 
 <div class="div-btn-choix">
     <a id="btn-mes-questions" asp-controller="Question" asp-action="MesQuestions">Mes Questions </a>
+            <a id="btn-mes-enregistrements" asp-controller="Enregistrement" asp-action="Index" asp-route-id="@ViewData["iduser"]">Mes Enregistrements </a>
     <a id="btn-mes-donnees-personnelles" asp-controller="User" asp-action="Credential">Mes Données Personelles</a>
     <a id="btn-nouveau" asp-controller="Question" asp-action="Create">Nouveau</a>
+            <a asp-controller="Home" asp-action="Logout">Se déconnecter </a>
+
 </div>
 
 
@@ -122,6 +125,11 @@
     a {
         text-decoration: none;
         color: dimgrey;
+    }
+
+    .div-btn-choix a {
+        text-decoration: none;
+        color: white;
     }
 
     .div-edit, .div-delete {
