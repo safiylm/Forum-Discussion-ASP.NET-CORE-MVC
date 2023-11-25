@@ -18,5 +18,6 @@ namespace Forum_descussion_ASP.NET_core_mvc.Data
 
         public DbSet<UserModel>? UserModel { get; set; }
         public DbSet<ResponseModel>? ResponseModel { get; set; }
+        public DbSet<EnregistrementModel>? EnregistrementModel { get; set; }
     }
 }
