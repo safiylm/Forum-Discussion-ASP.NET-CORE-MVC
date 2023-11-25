@@ -12,6 +12,8 @@ namespace Forum_descussion_ASP.NET_core_mvc.Models
         public string Titre { get; set; }
         public string Topic { get; set; }
         public string Description { get; set; }
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
+
         public DateTime DateCreation { get; set; }
         public bool isResolu { get; set; }
 

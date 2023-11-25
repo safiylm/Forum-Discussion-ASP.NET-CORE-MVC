@@ -9,6 +9,8 @@ namespace Forum_descussion_ASP.NET_core_mvc.Models
         public int UserId { get; set; }
         public int QuestionId { get; set; }
         public String ResponseContent{ get; set; }
+
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime DateCreation { get; set; }
 
         public UserModel User { get; set; }
