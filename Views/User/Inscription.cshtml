@@ -17,24 +17,24 @@
         <form asp-action="Inscription" method="post" >
             <div class="form-group">
                 <label asp-for="NameUser" class="control-label"></label>
-                <input asp-for="NameUser" class="form-control" value="mynameuis"/>
+                <input asp-for="NameUser" class="form-control"/>
                 <span asp-validation-for="NameUser" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Email" class="control-label"></label>
-                <input asp-for="Email" class="form-control" value="email@gmgmgmgm.com"/>
+                <input type="email" asp-for="Email" class="form-control" value="gmail.com"/>
                 <span asp-validation-for="Email" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Password" class="control-label"></label>
-                        <input asp-for="Password" class="form-control" value="123456" id="password1" onkeyup="checkpassword(value)" />
+                    <input type="password" asp-for="Password" class="form-control" value="" id="password1" onkeyup="checkpassword(value)" required />
                 <span asp-validation-for="Password" class="text-danger"></span>
                         <div id="info-pwd"></div>
             </div>
 
             <div class="form-group">
                 <label class="control-label"> Confirmer votre mot de passe </label>
-                <input class="form-control" value="" onChange="checkpasswordidentique(value)" />
+                    <input type="password" class="form-control" value="" onChange="checkpasswordidentique(value)" required />
                 <span  class="text-danger"></span>
                 <div id="info-pwd2"></div>
             </div>
