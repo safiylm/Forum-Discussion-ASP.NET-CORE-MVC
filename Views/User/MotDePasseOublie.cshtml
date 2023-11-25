@@ -1,0 +1,71 @@
+﻿@{
+    ViewData["Title"] = "Connexion";
+}
+@model Forum_descussion_ASP.NET_core_mvc.Models.UserModel
+
+<partial name="../Shared/Nav_non_connected.cshtml" />
+
+<div class="container">
+    <main role="main" class="pb-3">
+
+
+<div class="div-auth">
+    <h1>Mot de passe oublié </h1></br>
+    <form asp-action="mdpoublie" method="post">
+                <div class="form-group">
+
+                    <label  class="control-label">Saisir votre email : </label>
+                    <input type="email"  name="email" class="form-control" required autofocus/>
+                </div>
+
+                <p>Vous recevez dans un mail, un lien pour modifier votre mot de passe.</p>
+
+                <div class="form-group">
+                    <input type="submit" value="Envoyer" class="btn btn-secondary" style="background-color:#455e6a; color:white;" />
+                </div>
+
+               
+    </form>
+  
+</div>
+
+        <style>
+
+            body {
+                background-color: #455e6a;
+            }
+
+            .div-auth {
+                width: 450px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                margin: 100px auto;
+                background-color:white;
+                padding : 30px;
+                border-radius: 12px;
+            }
+
+                .div-auth form {
+                    width: 100%;
+
+                }
+
+                .div-auth .form-group{
+                    margin-bottom: 17px;
+                }
+
+                    .div-auth .form-group * {
+                        margin: 2px 0;
+                    }
+
+
+            .div-auth input{
+            width:100%;
+            }
+
+        </style>
+
+</main>
+</div>
