@@ -37,6 +37,22 @@ namespace Forum_descussion_ASP.NET_core_mvc.Controllers
             }
         }
 
+        // GET: Inscription
+        [HttpGet]
+        public IActionResult MotDePasseOublie()
+        {
+
+            //  HttpContext.Session.SetString("Email", "safinazzzzz");
+            if (HttpContext.Session.GetString("Email") == null)
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Mesquestions", "Question");
+
+            }
+        }
 
 
         [HttpPost]
