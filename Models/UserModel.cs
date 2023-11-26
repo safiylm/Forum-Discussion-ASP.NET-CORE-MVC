@@ -11,6 +11,7 @@ namespace Forum_descussion_ASP.NET_core_mvc.Models
         public String Password { get; set; }
 
         public bool isEmailConfirm { get; set; }
+        public string Photo { get; set; }
         public List<QuestionModel> QuestionModel { get; set; }
         public List<ResponseModel> ResponseModel { get; set; }
 
