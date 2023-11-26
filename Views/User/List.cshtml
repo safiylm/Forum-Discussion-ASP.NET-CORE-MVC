@@ -19,25 +19,39 @@ else
     <main role="main" class="pb-3">
 
 
+        <h1>Les Utilisateurs </h1>
 
-<div class="div-list-users">
-@foreach (var item in Model) {
+    <div class="div-list-users">
+    @foreach (var item in Model) {
         
-     <a asp-controller="Question" asp-action="LeursQuestions" asp-route-Id="@item?.Id">
-        <svg xmlns="http://www.w3.org/2000/svg" width="46" height="46" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
-            <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
-            <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
-        </svg>
-         <p>@Html.DisplayFor(modelItem => item.NameUser)</p> 
-     </a>
+         <a asp-controller="Question" asp-action="LeursQuestions" asp-route-Id="@item?.Id">
+            <img src="~/image/@item.Photo"/>
+             <p>@Html.DisplayFor(modelItem => item.NameUser)</p> 
+         </a>
           
              
-}
-</div>
+    }
+    </div>
 
 </main>
 </div>
 <style>
+
+
+    body {
+      
+        background-color: #455e6a;
+    }
+
+
+    * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+    }
+
+
+
     .div-list-users{
         margin:25px;
         display:flex;
@@ -45,9 +59,31 @@ else
         align-items:center;
         justify-content:center;
     }
+
+      h1{
+          color:white;
+          font-size:22px;
+          text-align:center;
+      }
+
     .div-list-users a {
         color: #696969;
         text-decoration:none;
         margin:15px 25px;
+        background-color: white;
+        border-radius: 10px;
     }
+
+    .div-list-users a img{
+        width:200px;
+        height:200px;
+        border-radius:50%;
+        object-fit:cover;
+    }
+
+        .div-list-users a p{
+        text-align:center;
+        }
+        
+
 </style>
