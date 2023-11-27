@@ -11,9 +11,9 @@
 
 <div class="container">
     <main role="main" class="pb-3">
+        
 
-
-<div class="div-btn-choix">
+        <div class="div-btn-choix">
     <a id="btn-mes-questions" asp-controller="Question" asp-action="MesQuestions">Mes Questions </a>
             <a id="btn-mes-enregistrements" asp-controller="Enregistrement" asp-action="Index" asp-route-id="@ViewData["iduser"]">Mes Enregistrements </a>
     <a id="btn-mes-donnees-personnelles" asp-controller="User" asp-action="Credential">Mes Données Personelles</a>
@@ -21,7 +21,7 @@
             <a asp-controller="Home" asp-action="Logout">Se déconnecter </a>
 
 </div>
-
+        <div id="userpartialzone"> </div>
 
 <div id="div-nn-repondu">
 
@@ -120,6 +120,12 @@
 
 </script>
 
+
+@section Scripts{
+    <script>
+        $('#userpartialzone').load("/Enregistrement/UserPartial")
+        </script>
+}
 
 <style>
     a {
