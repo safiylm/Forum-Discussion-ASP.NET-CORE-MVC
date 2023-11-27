@@ -20,6 +20,14 @@ namespace Forum_descussion_ASP.NET_core_mvc.Controllers
             _context = context;
         }
 
+        public IActionResult UserPartial(int id)
+        {
+            var forumContext = _context.UserModel.Where(q => q.Id == id );
+            return PartialView(forumContext);
+
+        }
+
+
         // GET: Inscription
         [HttpGet]
         public IActionResult Inscription()

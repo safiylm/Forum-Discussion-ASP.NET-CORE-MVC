@@ -30,7 +30,8 @@ namespace Forum_descussion_ASP.NET_core_mvc.Controllers
 
         public async Task<IActionResult> LeursQuestions(int? id)
         {
-            // ViewData["iduser"] = HttpContext.Session.GetInt32("iduser");
+            ViewData["iduser"] = HttpContext.Session.GetInt32("iduser");
+            ViewData["iduser_compte"] = id;
 
             if (id == null || _context.QuestionModel == null)
             {

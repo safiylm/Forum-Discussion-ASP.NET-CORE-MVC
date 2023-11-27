@@ -20,11 +20,8 @@ else
 <div class="container">
     <main role="main" class="pb-3">
 
+        <div id="userpartialzone"> </div>
 
-<div class="div-btn-choix">
-    <a id="btn-mes-questions">Mes Questions </a>
-    
-</div>
 
 
 <div id="div-nn-repondu">
@@ -42,7 +39,7 @@ else
      @*   <a asp-action="Details" asp-route-id="@item.Id">
               @Html.DisplayFor(modelItem => item.User.ID)
        </a> *@
-           
+          <input type="hidden" id="userId" value="@item.UserId" />
         <div class="question">
 
             <div class="div-nb">
@@ -103,13 +100,33 @@ else
    </main></div>
 
 
-<script>
-    $("#mes-donnees-personnelles-contenu").show()
 
+<script>
+    $(".div-btn-choix").css("justify-content", "center")
+    $("#mes-donnees-personnelles-contenu").show()
     $(".div-btn-choix button").css("color", "#7b8598");
     $(".div-btn-choix button").css("background-color", "transparent");
     $("#btn-mes-questions").css("color", "#f3ebff");
     $("#btn-mes-questions").css("background-color", "#9a7ce3");
 
+      
+       
+       
 
 </script>
+
+@section Scripts{
+    <script>
+
+
+        $(document).ready(function () {
+
+            const id = @ViewData["iduser_compte"];
+            console.log(id)
+            $('#userpartialzone').load("/User/UserPartial?id=" + id + "")
+        });
+       
+      
+    </script>
+}
+
