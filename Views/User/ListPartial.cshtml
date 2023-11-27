@@ -1,23 +1,5 @@
 ﻿@model IEnumerable<Forum_descussion_ASP.NET_core_mvc.Models.UserModel>
 
-@{
-    ViewData["Title"] = "Liste des utilisateurs";
-}
-
-
-@if (ViewData["iduser"] == null)
-{
-    <partial name="../Shared/Nav_non_connected.cshtml" />
-
-}
-else
-{
-    <partial name="../Shared/Nav_connected.cshtml" />
-
-}
-<div class="container">
-    <main role="main" class="pb-3">
-
 
         <h1>Les Utilisateurs </h1>
 
@@ -32,35 +14,31 @@ else
              
     }
     </div>
-
-</main>
-</div>
 <style>
 
 
-    body {
+    #userlistpartialzone {
       
         background-color: #455e6a;
+        padding : 50px 20px;
+        margin : 0;
+        width: 100%;
     }
 
 
-    * {
-        padding: 0;
-        margin: 0;
-        box-sizing: border-box;
-    }
 
 
 
     .div-list-users{
-        margin:25px;
+        margin:25px ;
         display:flex;
         flex-wrap:wrap;
         align-items:center;
         justify-content:center;
+       
     }
 
-      h1{
+    #userlistpartialzone h1 {
           color:white;
           font-size:22px;
           text-align:center;

@@ -2,22 +2,6 @@
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 
-@{
-    ViewData["Title"] = "Topics ";
-}
-
-
-@if (ViewData["iduser"] == null)
-{
-    <partial name="../Shared/Nav_non_connected.cshtml" />
-
-}
-else
-{
-    <partial name="../Shared/Nav_connected.cshtml" />
-
-}
-
 
 <div class="page-list-topic">
     <h1> Topics </h1>
@@ -36,10 +20,11 @@ else
 <style>
 
 
-    body {
-        background-color: #455e6a;
+    #topiclistpartialzone {
+        background-color: white;
+        margin-bottom: 100px;
+       
     }
-
 
     * {
         padding: 0;
@@ -49,34 +34,37 @@ else
 
     .page-list-topic h1 {
         font-size: 24px;
-        margin: 30px 50px;
+        margin: 20px 50px;
         text-align:center;
-        color:white;
+        color: black ;
     }
 
     .div-list-topic{
         display:flex;
         flex-direction:row;
         flex-wrap:wrap;
-        justify-items:center;
-        align-content:center;
-        margin: 30px auto;
-        width : 900px;
-        padding : 50px;
+        justify-content:center;
+        align-items:center;
+   
+        margin: 20px auto;
+        width : 100%;
+        padding : 10px ;
         border-radius : 15px;
     }
 
     .div-topic{
-        flex:30%;
-        padding: 30px 20px;
+        text-align: center;
+        padding: 80px 10px;
         background-color: dodgerblue;
-        background-color: white;
         margin : 15px;
         border-radius: 12px;
+        width: 200px;
+        height: 240px;
+        font-size: 20px;
     }
 
     .div-topic a{
-            color: #353535;
+        color: white ;
         text-decoration:none;
     }
 
