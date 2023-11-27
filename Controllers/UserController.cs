@@ -170,8 +170,15 @@ namespace Forum_descussion_ASP.NET_core_mvc.Controllers
 
         }
 
+        public async Task<IActionResult> ListPartial()
+        {
+            var forumContext = await _context.UserModel.ToListAsync();
+            return PartialView(forumContext);
 
-   
+        }
+
+
+
 
         [HttpGet]
         // GET: UserModels/Edit/5

@@ -1,0 +1,14 @@
+﻿@{
+    ViewData["Title"] = "Mes enregistrements ";
+}
+@model IEnumerable<Forum_descussion_ASP.NET_core_mvc.Models.ResponseModel>
+
+<div>
+          @foreach (var item in Model) {
+            <div>
+                    @Html.DisplayFor(modelItem => item.ResponseContent)
+            </div>
+          }
+</div>
+
+

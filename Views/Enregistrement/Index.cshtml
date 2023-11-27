@@ -27,28 +27,49 @@
 
         </div>
 
+         <div id="userpartialzone"> </div> 
+
         <div id="div-enregistrements"> Liste des enregistrements 
 
-            
             @foreach (var item in Model) {
-            <div>
-                    @Html.DisplayFor(modelItem => item.UserId)
-            </div>
+          
 
-                <div>
+                <div> Question : 
                     @Html.DisplayFor(modelItem => item.QuestionId)
                 </div>
 
-                <div>
+                <div> Reponse : 
                     @Html.DisplayFor(modelItem => item.ResponseId)
                 </div>
-            }
+
+                 
+            <div id="questionpartialzone"> </div>
+            <div id="responsepartialzone"> </div>
+
+
+            }       
 
         </div>
+        
+
+
+@section Scripts{
+    <script>
+        $('#userpartialzone').load("/Enregistrement/UserPartial")
+        $('#questionpartialzone').load("/Enregistrement/QuestionPartial?id=2006" )
+        $('#responsepartialzone').load("/Enregistrement/ResponsePartial?id=3015" )
+    </script>
+} 
+
     </main>
 </div>
 
+
+
+
+
 <style>
+
     a {
         text-decoration: none;
         color: dimgrey;

@@ -1,0 +1,16 @@
+﻿@{
+    ViewData["Title"] = "Mes enregistrements ";
+}
+@model IEnumerable<Forum_descussion_ASP.NET_core_mvc.Models.UserModel>
+
+
+<div>
+    @foreach (var item in Model) {
+       <div style="color:white;">
+           <img src="~/image/@item.Photo" width="200px" height="200px" />
+           @Html.DisplayFor(modelItem => item.NameUser)
+       </div>
+    }
+</div>
+
+

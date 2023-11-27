@@ -1,6 +1,7 @@
 ﻿@{
     ViewData["Title"] = "Home";
 }
+<link rel="stylesheet" href="~/css/accueil.css"/>
 
 @if ( ViewData["iduser"]== null){
     <partial name="../Shared/Nav_non_connected.cshtml" />
@@ -9,30 +10,42 @@
     <partial name="../Shared/Nav_connected.cshtml" />
 
 }
-<div class="container">
-    <main role="main" class="pb-3">
 
+
+<div class="div-container">
     
 <div class="div-accueil">
 
+
+        <div>
+            <img src="~/image/welcome.png" />
+        </div>
+
+
     <div>
         <h1 class="display-4">Forum</h1>
-        </br>
 
         <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
             incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, 
             quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
            </p>
-    
-        </br>
 
-        <button class="btn-Learn-More">Learn More </button>
+            <button onclick="document.location.href='/Question'" class="btn-Learn-More">Découvrir plus </button>
     </div>
 
-    <div>
-        <img src="~/image/discussion-forum.jpg" />
-    </div>
+
+
 </div>
 
-    </main>
-</div>
+    <div id="userlistpartialzone"> </div>
+    <div id="topiclistpartialzone"> </div>
+
+        @section Scripts{
+            <script>
+            $('#userlistpartialzone').load("/User/ListPartial")
+            $('#topiclistpartialzone').load("/Topic/ListPartial")
+            </script>
+        }
+
+
+    </div>

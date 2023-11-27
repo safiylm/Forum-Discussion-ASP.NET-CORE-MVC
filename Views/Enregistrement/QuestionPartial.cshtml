@@ -1,0 +1,17 @@
+﻿@model IEnumerable<Forum_descussion_ASP.NET_core_mvc.Models.QuestionModel>
+
+<div>
+   
+    @foreach (var item in Model) {
+        <div>
+            @Html.DisplayFor(modelItem => item.Titre)
+        </div>
+      
+        <div>
+            @Html.DisplayFor(modelItem => item.isResolu)
+        </div>
+    }
+         
+</div>
+
+

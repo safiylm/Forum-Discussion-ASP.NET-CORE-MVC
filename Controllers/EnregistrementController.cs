@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
-using Forum_descussion_ASP.NET_core_mvc.Data;
+﻿using Forum_descussion_ASP.NET_core_mvc.Data;
 using Forum_descussion_ASP.NET_core_mvc.Models;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Forum_descussion_ASP.NET_core_mvc.Controllers
 {
@@ -23,6 +18,7 @@ namespace Forum_descussion_ASP.NET_core_mvc.Controllers
         {
             if (HttpContext.Session.GetInt32("iduser") != null)
             {
+                ViewData["iduser"] = HttpContext.Session.GetInt32("iduser");
                 var forumContext = _context.EnregistrementModel.Where(q => q.UserId == HttpContext.Session.GetInt32("iduser"));
                 return View(await forumContext.ToListAsync());
 
@@ -31,10 +27,34 @@ namespace Forum_descussion_ASP.NET_core_mvc.Controllers
 
         }
 
+
+        public IActionResult UserPartial()
+        {
+            var forumContext = _context.UserModel.Where(q => q.Id == HttpContext.Session.GetInt32("iduser"));
+            return PartialView(forumContext);
+
+        }
+
+
+        public IActionResult QuestionPartial(int id)
+        {
+            var forumContext = _context.QuestionModel.Where(q => q.Id == id);
+            return PartialView(forumContext);
+
+        }
+
+        public IActionResult ResponsePartial(int id)
+        {
+            var forumContext = _context.ResponseModel.Where(q => q.Id == id);
+            return PartialView(forumContext);
+
+        }
+
+
         [HttpPost]
         public async Task<IActionResult> postEnregistrerReponse([Bind("Id, UserId, QuestionId, ResponseId")] EnregistrementModel enregtmt)
         {
-            if (HttpContext.Session.GetInt32("iduser") != null 
+            if (HttpContext.Session.GetInt32("iduser") != null
                 && enregtmt.UserId != 0
                 && enregtmt.QuestionId != 0
                 && enregtmt.ResponseId != 0)
