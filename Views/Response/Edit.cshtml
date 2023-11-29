@@ -3,18 +3,8 @@
 @{
     ViewData["Title"] = "Edit";
 }
-<div class="container">
-    <main role="main" class="pb-3">
 
-
-
-<h1>Edit</h1>
-
-<h4>ResponseModel</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
+        <form asp-action="Edit" id="form-edit-reponse">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" value="@ViewData["ResponseId"]" />
             <input type="hidden" asp-for="UserId" value="@ViewData["UserId"]" />
@@ -23,24 +13,41 @@
 
          
             <div class="form-group">
-                <label asp-for="ResponseContent" class="control-label"></label>
-                <input asp-for="ResponseContent" class="form-control" />
+                <textarea asp-for="ResponseContent" class="form-control" ></textarea>
                 <span asp-validation-for="ResponseContent" class="text-danger"></span>
             </div>
           
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" value="Modifier" class="btn btn-primary" />
             </div>
+
+                    <div style="display: block; text-decoration : none; color : dimgray; padding: 10px 0;">
+                        <a asp-controller="Question" asp-action="Details" asp-route-id="@ViewData["QuestionId"]">Back to List</a>
+                    </div>
         </form>
-    </div>
-</div>
 
-<div>
-    <a asp-controller="Question" asp-action="Details" asp-route-id="@ViewData["QuestionId"]">Back to List</a>
-</div>
-
-</main>
-</div>
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
+
+                <style>
+
+        body {
+            background-color: #455e6a;
+          
+        }
+
+        #form-edit-reponse{
+            background-color : white;
+            border-radius : 15px;
+            padding : 15px;
+            margin: 50px auto;
+            width : 600px;
+        }
+
+        #form-edit-reponse textarea{
+                width: 100%;
+                padding: 10px;
+            }
+
+                </style>

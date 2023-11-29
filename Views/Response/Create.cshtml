@@ -1,26 +1,13 @@
 ﻿@model Forum_descussion_ASP.NET_core_mvc.Models.ResponseModel
 
-@{
-    ViewData["Title"] = "Create";
-}
-
-<div class="container">
-    <main role="main" class="pb-3">
-
-
-<h1>Create</h1>
-
-<hr />
-<div class="row">
-    <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 
             <input type="hidden" asp-for="QuestionId" value="@ViewData["idquestion"]" />
            
                 <div class="form-group">
-                <label asp-for="ResponseContent" class="control-label"></label>
-                <input asp-for="ResponseContent" class="form-control" />
+                <label asp-for="ResponseContent" class="control-label"> Répondree </label>
+                <input asp-for="ResponseContent" class="form-control" required />
                 <span asp-validation-for="ResponseContent" class="text-danger"></span>
             </div>
                <input type="hidden" asp-for="DateCreation"  />
@@ -30,15 +17,4 @@
             </div>
 
         </form>
-    </div>
-</div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
-</main>
-</div>
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
