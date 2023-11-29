@@ -1,5 +1,6 @@
 ﻿@{
     ViewData["Title"] = "Mes enregistrements ";
+    var index = 0;
 }
 @model IEnumerable<Forum_descussion_ASP.NET_core_mvc.Models.EnregistrementModel>
 
@@ -24,31 +25,48 @@
             <a id="btn-mes-donnees-personnelles" asp-controller="User" asp-action="Credential" asp-route-id="2">Mes Données Personelles</a>
             <a id="btn-nouveau" asp-controller="Question" asp-action="Create">Nouveau</a>
             <a asp-controller="Home" asp-action="Logout">Se déconnecter </a>
-
         </div>
 
-      
+ 
 
-        <div id="div-enregistrements"> Liste des enregistrements 
+        <div id="div-enregistrements"> 
+            <div id="listtee">
+            </div>
+
+            <script>
+                function afficher(index, q, r) {
+                    console.log("index" + index + ", question: " + q + ", reponse : " + r)
+                    const div = document.createElement('div');
+                    div.setAttribute("id", "divq"+index);
+
+
+                    const divr = document.createElement('div');
+                    divr.setAttribute("id", "divr" + index);
+
+                    const border = document.createElement('div');
+                    border.setAttribute("id", "border");
+
+                    document.getElementById("listtee").append(div, divr, border);
+                    $('#divq' + index).load("/Enregistrement/QuestionPartial?id=" + q)
+                    $('#divr' + index).load("/Enregistrement/ResponsePartial?id=" + r)
+
+                }
+
+            </script>
+
 
             @foreach (var item in Model)
             {
 
-                <div> Question : 
-                    @Html.DisplayFor(modelItem => item.QuestionId)
-                </div>
+                <script>
+                    afficher(@index, @item.QuestionId , @item.ResponseId )
+                </script>
 
-                <div> Reponse : 
-                    @Html.DisplayFor(modelItem => item.ResponseId)
-                </div>
-
-                <div id="reponsepartialzone" onload="/Enregistrement/ResponsePartial?id=0"> </div>
-                
+             
+                index = index + 1;
             }
 
-            <div id="questionpartialzone" onloadstart="/User/ListPartial"> </div>
-
-           
+        
 
             @section Scripts{
                 <script>
@@ -59,10 +77,6 @@
 
         </div>
         
-
-
-
-
     </main>
 </div>
 
@@ -71,6 +85,10 @@
 
 
 <style>
+        #border{
+            border-bottom: 0.5px solid black;
+            margin : 20px 0;
+        }
 
     a {
         text-decoration: none;

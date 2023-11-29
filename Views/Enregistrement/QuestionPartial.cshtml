@@ -4,12 +4,9 @@
    
     @foreach (var item in Model) {
         <div>
-            @Html.DisplayFor(modelItem => item.Titre)
+            <strong> @Html.DisplayFor(modelItem => item.Titre) </strong>
         </div>
-      
-        <div>
-            @Html.DisplayFor(modelItem => item.isResolu)
-        </div>
+     
     }
          
 </div>
