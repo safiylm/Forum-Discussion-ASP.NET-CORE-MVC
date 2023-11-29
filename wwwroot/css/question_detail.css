@@ -94,8 +94,8 @@ a {
     border: none;
     background-color: transparent;
     color: dimgray;
-    text-decoration: underline;
     padding: 10px 0;
+    text-decoration : none;
 }
 
 #createreponse {

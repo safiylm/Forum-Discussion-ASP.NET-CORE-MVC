@@ -85,12 +85,15 @@ namespace Forum_descussion_ASP.NET_core_mvc.Controllers
             {
                 return NotFound();
             }
+            ViewData["AuteurId"] = questionModel.UserId;
+
             ViewData["NameUser"] = questionModel.User.NameUser;
             ViewData["DateCreation"] = questionModel.DateCreation.ToString("dd/MM/yyyy");
             ViewData["Description"] = questionModel.Description;
             ViewData["Topic"] = questionModel.Topic;
             ViewData["Titre"] = questionModel.Titre;
             ViewData["isResolu"] = questionModel.isResolu;
+            ViewData["Photo"] = questionModel.User.Photo;
 
 
             var forumContext = await _context.ResponseModel.Include(r => r.Question).
