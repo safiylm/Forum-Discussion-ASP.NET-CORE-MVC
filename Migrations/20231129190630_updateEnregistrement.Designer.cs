@@ -4,6 +4,7 @@ using Forum_descussion_ASP.NET_core_mvc.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Forum_descussion_ASP.NET_core_mvc.Migrations
 {
     [DbContext(typeof(ForumContext))]
-    partial class ForumContextModelSnapshot : ModelSnapshot
+    [Migration("20231129190630_updateEnregistrement")]
+    partial class updateEnregistrement
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -152,13 +154,13 @@ namespace Forum_descussion_ASP.NET_core_mvc.Migrations
             modelBuilder.Entity("Forum_descussion_ASP.NET_core_mvc.Models.EnregistrementModel", b =>
                 {
                     b.HasOne("Forum_descussion_ASP.NET_core_mvc.Models.QuestionModel", "Question")
-                        .WithMany("EnregistrementModel")
+                        .WithMany()
                         .HasForeignKey("QuestionId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Forum_descussion_ASP.NET_core_mvc.Models.ResponseModel", "Response")
-                        .WithMany("EnregistrementModel")
+                        .WithMany()
                         .HasForeignKey("ResponseId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -200,14 +202,7 @@ namespace Forum_descussion_ASP.NET_core_mvc.Migrations
 
             modelBuilder.Entity("Forum_descussion_ASP.NET_core_mvc.Models.QuestionModel", b =>
                 {
-                    b.Navigation("EnregistrementModel");
-
                     b.Navigation("ResponseModel");
-                });
-
-            modelBuilder.Entity("Forum_descussion_ASP.NET_core_mvc.Models.ResponseModel", b =>
-                {
-                    b.Navigation("EnregistrementModel");
                 });
 
             modelBuilder.Entity("Forum_descussion_ASP.NET_core_mvc.Models.UserModel", b =>

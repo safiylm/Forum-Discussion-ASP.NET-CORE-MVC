@@ -16,5 +16,8 @@ namespace Forum_descussion_ASP.NET_core_mvc.Models
         public UserModel User { get; set; }
 
         public QuestionModel Question { get; set; }
+        public List<EnregistrementModel> EnregistrementModel { get; set; }
+
+
     }
 }
