@@ -1,0 +1,46 @@
+
+#topiclistpartialzone {
+    background-color: white;
+    margin-bottom: 100px;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.page-list-topic h1 {
+    font-size: 24px;
+    margin: 20px 50px;
+    text-align: center;
+    color: black;
+}
+
+.div-list-topic {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin: 20px auto;
+    width: 100%;
+    padding: 10px;
+    border-radius: 15px;
+}
+
+.div-topic {
+    text-align: center;
+    padding: 80px 10px;
+    background-color: #9a7ce3;
+    margin: 15px;
+    border-radius: 12px;
+    width: 200px;
+    height: 210px;
+    font-size: 20px;
+}
+
+    .div-topic a {
+        color: white;
+        text-decoration: none;
+    }
