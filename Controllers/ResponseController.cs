@@ -30,15 +30,13 @@ namespace Forum_descussion_ASP.NET_core_mvc.Controllers
         // GET: Response/Create
         public IActionResult Create(int? id)
         {
-            if (HttpContext.Session.GetInt32("iduser") != null)
-            {
+         
                 ViewData["idquestion"] = id;
 
                 ViewData["QuestionId"] = new SelectList(_context.QuestionModel, "Id", "Id");
                 ViewData["UserId"] = new SelectList(_context.UserModel, "Id", "Id");
-                return View();
-            }
-            return RedirectToAction("Connexion", "user");
+                return PartialView();
+   
 
         }
 
@@ -147,7 +145,9 @@ namespace Forum_descussion_ASP.NET_core_mvc.Controllers
                 .Include(r => r.Question)
                 .Include(r => r.User)
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (responseModel == null)
+                ViewData["QuestionId"] = responseModel.QuestionId;
+
+                if (responseModel == null)
             {
                 return NotFound();
             }
