@@ -6,7 +6,8 @@
     var isResolu = ViewData["isResolu"];
     var datecreation = @ViewData["DateCreation"];
     var idquestion = @ViewData["idquestion"];
-
+    var idAuteurQuestion = ViewData["AuteurId"];
+    var idSolution = ViewData["idSolution"];
 }
 
 @if (ViewData["iduser"] == null)
@@ -121,7 +122,33 @@ else
                    </form>
                         
              }
-         </div>
+                    @if (idSolution.Equals(0))
+                    {
+                        if ( iduser.Equals(idAuteurQuestion) )
+                        {
+                            <a href="/Question/addQuestionResolu?idQuestion=@ViewData["idquestion"]&idResponseSolution=@item.Id"> Question résolu ? </a>
+                        }
+                    }else
+
+                    if (  idSolution.Equals( @item.Id ))
+                    {
+                        <div style="color: green; display: inline;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" color="green" fill="currentColor" class="bi bi-check-square-fill" viewBox="0 0 16 16">
+                                <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm10.03 4.97a.75.75 0 0 1 .011 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.75.75 0 0 1 1.08-.022z" />
+                            </svg>
+                        
+                            @if ( iduser.Equals(idAuteurQuestion) )
+                        {
+                                <a style="color: dimgrey;" href="/Question/removeQuestionResolu?idQuestion=@ViewData["idquestion"]"> Question non résolu ? </a>
+                        }
+                        </div>
+                    } 
+
+                   
+
+
+
+                </div>
      </div>  
 
     }

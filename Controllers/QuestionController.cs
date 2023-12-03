@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Forum_descussion_ASP.NET_core_mvc.Data;
 using Forum_descussion_ASP.NET_core_mvc.Models;
+using Forum_descussion_ASP.NET_core_mvc.Migrations;
 
 namespace Forum_descussion_ASP.NET_core_mvc.Controllers
 {
@@ -74,7 +75,9 @@ namespace Forum_descussion_ASP.NET_core_mvc.Controllers
                 return NotFound();
             }
 
-            ViewData["iduser"] = HttpContext.Session.GetInt32("iduser");
+            if (HttpContext.Session.GetInt32("iduser") == null) ViewData["iduser"] = 0; 
+            else  ViewData["iduser"] = HttpContext.Session.GetInt32("iduser");
+           
             ViewData["idquestion"] = id;
 
             var questionModel = await _context.QuestionModel
@@ -94,7 +97,7 @@ namespace Forum_descussion_ASP.NET_core_mvc.Controllers
             ViewData["Titre"] = questionModel.Titre;
             ViewData["isResolu"] = questionModel.isResolu;
             ViewData["Photo"] = questionModel.User.Photo;
-
+            ViewData["idSolution"] = questionModel.idSolution;
 
             var forumContext = await _context.ResponseModel.Include(r => r.Question).
                     Include(r => r.User).Where(x => x.QuestionId == id).ToListAsync();
@@ -108,7 +111,7 @@ namespace Forum_descussion_ASP.NET_core_mvc.Controllers
 
         }
 
-
+        
 
         // GET: Question/Create
         public IActionResult Create()
@@ -227,8 +230,76 @@ namespace Forum_descussion_ASP.NET_core_mvc.Controllers
             }
             return RedirectToAction("connexion", "user");
         }
+        [HttpGet]
+        public async Task<IActionResult> addQuestionResolu(int idQuestion, int idResponseSolution) {
 
 
+            if (idQuestion == 0 && idResponseSolution == 0)
+            {
+                return NotFound();
+            }
+
+            var questionModel = await _context.QuestionModel.FindAsync(idQuestion) ;
+
+            // if (ModelState.IsValid) {
+            try
+            {
+                questionModel.idSolution = idResponseSolution; 
+                questionModel.isResolu = true;
+
+                _context.Update(questionModel);
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!QuestionModelExists(questionModel.Id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return RedirectToAction("Details", "question", new { id = idQuestion });
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> removeQuestionResolu(int idQuestion )
+        {
+
+
+            if (idQuestion == 0)
+            {
+                return NotFound();
+            }
+
+            var questionModel = await _context.QuestionModel.FindAsync(idQuestion);
+
+            // if (ModelState.IsValid) {
+            try
+            {
+                questionModel.idSolution = 0;
+                questionModel.isResolu = false; 
+
+                _context.Update(questionModel);
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!QuestionModelExists(questionModel.Id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return RedirectToAction("Details", "question", new { id = idQuestion });
+        }
 
         // POST: QuestionModels/Delete/5
         [HttpPost, ActionName("Delete")]

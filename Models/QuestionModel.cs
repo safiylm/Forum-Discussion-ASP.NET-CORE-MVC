@@ -16,7 +16,7 @@ namespace Forum_descussion_ASP.NET_core_mvc.Models
 
         public DateTime DateCreation { get; set; }
         public bool isResolu { get; set; }
-
+        public int idSolution { get; set; }
         public UserModel User { get; set;  }
 
         public List<ResponseModel> ResponseModel { get; set; }

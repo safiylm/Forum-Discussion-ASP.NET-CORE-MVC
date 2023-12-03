@@ -40,14 +40,10 @@ namespace Forum_descussion_ASP.NET_core_mvc.Controllers
 
         }
 
-        // POST: Response/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("QuestionId,ResponseContent")] ResponseModel responseModel)
         {
-          
             responseModel.UserId = (int)HttpContext.Session.GetInt32("iduser");
             responseModel.DateCreation = DateTime.Now;
             if (responseModel != null)
@@ -55,7 +51,6 @@ namespace Forum_descussion_ASP.NET_core_mvc.Controllers
                 _context.Add(responseModel);
                 await _context.SaveChangesAsync();
                 return RedirectToAction("details", "question", new { id = responseModel.QuestionId });
-
             }
 
             ViewData["QuestionId"] = new SelectList(_context.QuestionModel, "Id", "Id", responseModel.QuestionId);
@@ -63,7 +58,6 @@ namespace Forum_descussion_ASP.NET_core_mvc.Controllers
             return View(responseModel);
         }
 
-        // GET: Response/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.ResponseModel == null)
@@ -89,9 +83,6 @@ namespace Forum_descussion_ASP.NET_core_mvc.Controllers
 
         }
 
-        // POST: Response/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,UserId,QuestionId,ResponseContent,DateCreation")] ResponseModel responseModel)
@@ -131,7 +122,6 @@ namespace Forum_descussion_ASP.NET_core_mvc.Controllers
            // return View(responseModel);
         }
 
-        // GET: Response/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.ResponseModel == null)
@@ -158,7 +148,7 @@ namespace Forum_descussion_ASP.NET_core_mvc.Controllers
             return RedirectToAction("Connexion", "user");
         }
 
-        // POST: Response/Delete/5
+
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
