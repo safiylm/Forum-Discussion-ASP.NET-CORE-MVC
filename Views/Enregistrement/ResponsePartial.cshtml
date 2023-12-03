@@ -7,6 +7,8 @@
           @foreach (var item in Model) {
             <div>
                     @Html.DisplayFor(modelItem => item.ResponseContent)
+            <a href="/Enregistrement/postDeleteEnregistrement?idEnregistrement=@ViewData["idEnregistrement"]">Supprimer</a>
+
             </div>
 
           }

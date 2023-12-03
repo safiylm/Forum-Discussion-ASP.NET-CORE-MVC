@@ -36,18 +36,38 @@ namespace Forum_descussion_ASP.NET_core_mvc.Controllers
         }
 
 
-        public IActionResult QuestionPartial(int id)
+        public IActionResult QuestionPartial(int id, int idEnregistrement)
         {
+            ViewData["idEnregistrement"] = idEnregistrement;
             var forumContext = _context.QuestionModel.Where(q => q.Id == id);
             return PartialView(forumContext);
 
         }
 
-        public IActionResult ResponsePartial(int id)
+   
+        public IActionResult ResponsePartial(int id, int idEnregistrement)
         {
+            ViewData["idEnregistrement"] = idEnregistrement;
+
             var forumContext = _context.ResponseModel.Where(q => q.Id == id);
             return PartialView(forumContext);
 
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> postDeleteEnregistrement(int idEnregistrement)
+        {
+            if (_context.EnregistrementModel == null)
+            {
+                return Problem("Entity set 'ForumContext.EnregistrementModel'  is null.");
+            }
+            var enregistrement = await _context.EnregistrementModel.FindAsync(idEnregistrement);
+            if (enregistrement != null)
+            {
+                _context.EnregistrementModel.Remove(enregistrement);
+            }
+
+            await _context.SaveChangesAsync(); return RedirectToAction("Index");
         }
 
 

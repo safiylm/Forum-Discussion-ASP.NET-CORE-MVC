@@ -34,7 +34,7 @@
             </div>
 
             <script>
-                function afficher(index, q, r) {
+                function afficher(index, q, r, idEnregistrement) {
                     console.log("index" + index + ", question: " + q + ", reponse : " + r)
                     const div = document.createElement('div');
                     div.setAttribute("id", "divq"+index);
@@ -47,8 +47,8 @@
                     border.setAttribute("id", "border");
 
                     document.getElementById("listtee").append(div, divr, border);
-                    $('#divq' + index).load("/Enregistrement/QuestionPartial?id=" + q)
-                    $('#divr' + index).load("/Enregistrement/ResponsePartial?id=" + r)
+                    $('#divq' + index).load("/Enregistrement/QuestionPartial?id=" + q + "&idEnregistrement=" + idEnregistrement)
+                    $('#divr' + index).load("/Enregistrement/ResponsePartial?id=" + r + "&idEnregistrement=" + idEnregistrement)
 
                 }
 
@@ -59,7 +59,7 @@
             {
 
                 <script>
-                    afficher(@index, @item.QuestionId , @item.ResponseId )
+                    afficher(@index, @item.QuestionId , @item.ResponseId, @item.Id )
                 </script>
 
              

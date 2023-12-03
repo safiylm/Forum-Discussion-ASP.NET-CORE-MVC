@@ -104,25 +104,24 @@ else
 @*     Impossible d'appliquer l'opérateur '==' aux opérandes de type 'int' et 'object'	  
 *@
 
-                <div style="margin-left: 50px;">
+       <div style="margin-left: 50px;">
 
-        @if ( item.UserId.Equals(iduser))
-         {
-            <a class="btn-edit-response" asp-controller="Response" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
-            <a class="btn-delete-response" asp-controller="Response" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            @if ( item.UserId.Equals(iduser))
+             {
+                <a class="btn-edit-response" asp-controller="Response" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                <a class="btn-delete-response" asp-controller="Response" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
 
-            
-         }else{
+             }else{
                         
-               <form method="post" action="/Enregistrement/postEnregistrerReponse">
-                   <input type="hidden" name="QuestionId" value="@ViewData["idquestion"]" />
-                   <input type="hidden" name="ResponseId" value="@item.Id" />
-                   <input type="hidden" name="UserId" value="@ViewData["iduser"]" />
-                   <button type="submit" class="btn-save"> Enregistrer </button>
-               </form>
+                   <form method="post" action="/Enregistrement/postEnregistrerReponse">
+                       <input type="hidden" name="QuestionId" value="@ViewData["idquestion"]" />
+                       <input type="hidden" name="ResponseId" value="@item.Id" />
+                       <input type="hidden" name="UserId" value="@ViewData["iduser"]" />
+                       <button type="submit" class="btn-save"> Enregistrer </button>
+                   </form>
                         
-         }
-                </div>
+             }
+         </div>
      </div>  
 
     }

@@ -5,6 +5,8 @@
     @foreach (var item in Model) {
         <div>
             <strong> @Html.DisplayFor(modelItem => item.Titre) </strong>
+
+            <a href="/Enregistrement/postDeleteEnregistrement?idEnregistrement=@ViewData["idEnregistrement"]">Supprimer</a>
         </div>
      
     }
