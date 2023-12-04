@@ -14,8 +14,6 @@
 
 <h1>Créer une Question</h1>
 
-<hr />
-
 <div class="div-form-ajouter-forum">
     <div class="container">
 
@@ -31,7 +29,11 @@
             </div>
             <div class="form-group">
                 <label asp-for="Topic" class="control-label"></label>
-                <input asp-for="Topic" class="form-control" />
+                <select asp-for="Topic" class="form-control" >
+                            <option>Programmation-Web</option>
+                            <option>Developpment-yourself</option>
+                            <option>Sante</option>
+                    </select>
                 <span asp-validation-for="Topic" class="text-danger"></span>
             </div>
          
@@ -143,40 +145,8 @@
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
 </main></div>
-
-<style>
-
-     body{
-           background-color: #455e6a;
-     }
-
-        a {
-            text-decoration: none;
-            color: white;
-        }
-
-        .div-btn-choix a {
-            text-decoration: none;
-            color: white;
-        }
-
-     h1{
-         text-align:center;
-         color: white;
-         
-        }
-     
-     .form-group textarea{
-         width:100%;
-         height: 60px;
-     }
-
-</style>

@@ -12,17 +12,16 @@
 <div class="container">
     <main role="main" class="pb-3">
         <div id="userpartialzone"> </div>
+
         <div class="div-btn-choix">
-    <a id="btn-mes-questions" asp-controller="Question" asp-action="MesQuestions">Mes Questions </a>
+            <a id="btn-mes-questions" asp-controller="Question" asp-action="MesQuestions">Mes Questions </a>
             <a id="btn-mes-enregistrements" asp-controller="Enregistrement" asp-action="Index" asp-route-id="@ViewData["iduser"]">Mes Enregistrements </a>
-    <a id="btn-mes-donnees-personnelles" asp-controller="User" asp-action="Credential">Mes Données Personelles</a>
-    <a id="btn-nouveau" asp-controller="Question" asp-action="Create">Nouveau</a>
+            <a id="btn-mes-donnees-personnelles" asp-controller="User" asp-action="Credential">Mes Données Personelles</a>
+            <a id="btn-nouveau" asp-controller="Question" asp-action="Create">Nouveau</a>
             <a asp-controller="Home" asp-action="Logout">Se déconnecter </a>
+        </div>
 
-</div>
-       
-
-<div id="div-nn-repondu">
+        <div id="div-nn-repondu">
 
     <div class="div-liste-questions">
 
@@ -101,16 +100,10 @@
       </div>
    </div>
 
+       </br></br></br></br></br></br></br>
 
-       </br>
-    </br>
-    </br>
-    </br>
-    </br>
-    </br>
-        </br>
-
-   </main></div>
+   </main>
+</div>
 
 
 <script>
@@ -128,25 +121,7 @@
 @section Scripts{
     <script>
         $('#userpartialzone').load("/Enregistrement/UserPartial")
-        </script>
+
+    </script>
 }
 
-<style>
-    a {
-        text-decoration: none;
-        color: dimgrey;
-    }
-
-    .div-btn-choix a {
-        text-decoration: none;
-        color: white;
-    }
-
-    .div-edit, .div-delete {
-        flex: 5%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-wrap: wrap;
-    }
-</style>

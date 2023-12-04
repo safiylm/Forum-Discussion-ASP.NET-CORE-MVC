@@ -4,6 +4,8 @@
 }
 @model IEnumerable<Forum_descussion_ASP.NET_core_mvc.Models.EnregistrementModel>
 
+<link rel="stylesheet" href="~/css/enregistrement_index.css"/>
+
 @if ( ViewData["iduser"]== null){
     <partial name="../Shared/Nav_non_connected.cshtml" />
 
@@ -82,38 +84,6 @@
 
 
 
-
-
-<style>
-        #border{
-            border-bottom: 0.5px solid black;
-            margin : 20px 0;
-        }
-
-    a {
-        text-decoration: none;
-        color: dimgrey;
-    }
-
-    .div-btn-choix a {
-        text-decoration: none;
-        color: white;
-    }
-
-    .btnnn {
-        background-color: #9a7ce3;
-        color: white;
-        padding: 7px 13px;
-        border-radius: 7px;
-    }
-
-    #div-enregistrements{
-        background-color: white;
-        padding : 30px;
-        margin: 20px auto;
-        border-radius: 15px;
-    }
-</style>
 
 
 <script>

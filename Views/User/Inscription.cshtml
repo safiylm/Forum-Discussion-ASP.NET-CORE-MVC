@@ -5,7 +5,7 @@
 @model Forum_descussion_ASP.NET_core_mvc.Models.UserModel
 
 <partial name="../Shared/Nav_non_connected.cshtml" />
-
+<link rel="stylesheet" href="~/css/auth.css"/>
                 <div class="container">
                     <main role="main" class="pb-3">
 
@@ -102,42 +102,6 @@
 
 
 
-<style>
-
-   body{
-        background-color: #455e6a;
-    }
-
-  .div-auth {
-                width: 450px;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-                margin: 50px auto;
-                background-color:white;
-        padding: 30px ;
-        border-radius: 12px;
-            }
-
-    .div-auth form{
-            width: 100%;
-        }
-
-        .div-auth .form-group {
-            margin-bottom: 17px;
-        }
-
-        .div-auth .form-group * {
-            margin: 2px 0;
-        }
-
-    .div-auth input{
-        width:100%;
-    }
-    
-
-</style>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

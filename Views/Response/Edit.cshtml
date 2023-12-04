@@ -3,6 +3,8 @@
 @{
     ViewData["Title"] = "Edit";
 }
+<link rel="stylesheet" href="~/css/response_edit_delete.css" />
+
 
         <form asp-action="Edit" id="form-edit-reponse">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -30,24 +32,4 @@
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
 
-                <style>
-
-        body {
-            background-color: #455e6a;
-          
-        }
-
-        #form-edit-reponse{
-            background-color : white;
-            border-radius : 15px;
-            padding : 15px;
-            margin: 50px auto;
-            width : 600px;
-        }
-
-        #form-edit-reponse textarea{
-                width: 100%;
-                padding: 10px;
-            }
-
-                </style>
+      

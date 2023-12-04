@@ -1,7 +1,8 @@
 ﻿@model IEnumerable<Forum_descussion_ASP.NET_core_mvc.Models.UserModel>
 
+<link rel="stylesheet" href="~/css/user_listpartial.css" />
 
-        <h1>Les Utilisateurs </h1>
+<h1>Les Utilisateurs </h1>
 
     <div class="div-list-users">
     @foreach (var item in Model) {
@@ -11,57 +12,5 @@
              <p>@Html.DisplayFor(modelItem => item.NameUser)</p> 
          </a>
           
-             
     }
     </div>
-<style>
-
-
-    #userlistpartialzone {
-      
-        background-color: #455e6a;
-        padding : 50px 20px;
-        margin : 0;
-        width: 100%;
-    }
-
-
-
-
-
-    .div-list-users{
-        margin:25px ;
-        display:flex;
-        flex-wrap:wrap;
-        align-items:center;
-        justify-content:center;
-       
-    }
-
-    #userlistpartialzone h1 {
-          color:white;
-          font-size:22px;
-          text-align:center;
-      }
-
-    .div-list-users a {
-        color: #696969;
-        text-decoration:none;
-        margin:15px 25px;
-        background-color: white;
-        border-radius: 10px;
-    }
-
-    .div-list-users a img{
-        width:200px;
-        height:200px;
-        border-radius:50%;
-        object-fit:cover;
-    }
-
-        .div-list-users a p{
-        text-align:center;
-        }
-        
-
-</style>
