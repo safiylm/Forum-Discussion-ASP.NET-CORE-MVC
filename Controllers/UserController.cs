@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Forum_descussion_ASP.NET_core_mvc.Data;
 using Forum_descussion_ASP.NET_core_mvc.Models;
 using System.Security.Policy;
+using Microsoft.AspNetCore.Mvc.ViewFeatures;
 
 namespace Forum_descussion_ASP.NET_core_mvc.Controllers
 {
@@ -185,6 +186,11 @@ namespace Forum_descussion_ASP.NET_core_mvc.Controllers
 
         }
 
+        public IActionResult MenuHorizontalPartial()
+        {
+            ViewData["iduser"] = HttpContext.Session.GetInt32("iduser");
+            return PartialView();
+        }
 
 
 
