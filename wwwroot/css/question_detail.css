@@ -1,6 +1,3 @@
-body {
-    background-color: #455e6a;
-}
 
 
 h1 {
@@ -25,9 +22,12 @@ h1 {
     border-bottom: 0.5px solid gray;
 }
 
-.div-corps{
-    display:flex;
+.forum-question1 {
+    border-radius: 15px 15px 0 0;
+}
 
+.div-corps {
+    display: flex;
 }
 
 .left {
@@ -108,7 +108,6 @@ a {
 
 #createreponse {
     background-color: white;
-    border-radius: 15px;
+    border-radius: 0 0 15px 15px;
     padding: 20px;
-    margin: 50px 20px;
 }

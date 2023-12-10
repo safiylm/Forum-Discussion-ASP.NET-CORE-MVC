@@ -1,9 +1,4 @@
 
-body {
-    background-color: #338cf4;
-    /*background-color: #9a7ce3;*/
-    background-color: #455e6a;
-}
 a {
     text-decoration: none;
     color: white;
@@ -12,11 +7,6 @@ h1{
     text-align:center;
     color:white;
     
-}
-* {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
 }
 
 .form-group textarea {

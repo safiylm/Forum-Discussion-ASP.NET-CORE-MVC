@@ -1,9 +1,4 @@
 
-body {
-    background-color: #8677ac;
-    background-color: #455e6a;
-}
-
 
 a {
     text-decoration: none;
@@ -38,7 +33,7 @@ h1 a {
 
 .question .titre a, .div-categorie a {
     text-decoration: none;
-   color: dimgrey;
+   color: black;
 }
 
 .div-btn-, .div-categorie, .div-btn-choix {

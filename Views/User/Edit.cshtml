@@ -3,19 +3,11 @@
 @{
     ViewData["Title"] = "Edit";
 }
-
+<link rel="stylesheet" href="~/css/user_edit_delete.css"/>
 <partial name="../Shared/Nav_connected.cshtml" />
 
-<div class="container">
-    <main role="main" class="pb-3">
-
-
-<h1>Edit</h1>
-
-<h4>UserModel</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
+<div class="container-user-edit">
+    <h3>Modifier vos données </h3>
         <form asp-action="Edit" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" value="@ViewData["iduser"]"/>
@@ -31,20 +23,16 @@
             </div>
             <div class="form-group">
                 <label asp-for="Password" class="control-label"></label>
-                <input asp-for="Password" class="form-control" />
+                <input type="password" asp-for="Password" class="form-control" />
                 <span asp-validation-for="Password" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>
         </form>
-    </div>
-</div>
-
-<div>
+    
     <a asp-action="Credential">Back</a>
-</div>
-</main>
+
 </div>
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

@@ -1,0 +1,13 @@
+﻿.container-user-delete, .container-user-edit,
+.container-question-delete {
+    background-color: white;
+    padding: 20px;
+    border-radius: 15px;
+    width: 600px;
+    margin: 50px auto;
+}
+
+.container-user-delete h3, .container-user-edit h3{
+    font-family:'Microsoft YaHei';
+
+}

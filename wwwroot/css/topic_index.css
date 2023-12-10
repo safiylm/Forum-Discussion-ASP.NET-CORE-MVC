@@ -1,16 +1,4 @@
 
-
-body {
-    background-color: #455e6a;
-}
-
-
-* {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-}
-
 .page-list-topic h1 {
     font-size: 24px;
     margin: 30px 50px;

@@ -3,18 +3,13 @@
 @{
     ViewData["Title"] = "Delete";
 }
+<link rel="stylesheet" href="~/css/user_edit_delete.css"/>
 
 <partial name="../Shared/Nav_connected.cshtml" />
-<div class="container">
-    <main role="main" class="pb-3">
+<div class="container-question-delete">
 
-
-
-<h1>Delete</h1>
-
-<h3>Are you sure you want to delete this?</h3>
+<h3>Etes vous sur de voulaoir supprimer cette question?</h3>
 <div>
-    <h4>QuestionModel</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
@@ -49,4 +44,4 @@
         <a asp-action="Index">Back to List</a>
     </form>
 </div>
-</main></div>
+</div>
