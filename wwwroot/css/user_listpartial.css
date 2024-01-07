@@ -1,7 +1,9 @@
-﻿
+﻿:root{
+    --font-color: rgb(30, 30, 70);
+}
 
 #userlistpartialzone {
-    background-color: #455e6a;
+    background-color: transparent;
     padding: 50px 20px;
     margin: 0;
     width: 100%;
@@ -16,26 +18,73 @@
 }
 
 #userlistpartialzone h1 {
-    color: white;
+    color: var(--font-color);
     font-size: 22px;
     text-align: center;
 }
 
 .div-list-users a {
-    color: #696969;
+    color: var(--font-color);
     text-decoration: none;
-    margin: 15px 25px;
-    background-color: white;
-    border-radius: 10px;
+    margin: 15px;
+   
+    height: 150px;
+    border-radius: 50%;
 }
 
     .div-list-users a img {
-        width: 200px;
-        height: 200px;
+        width: 100px;
+        height: 100px;
         border-radius: 50%;
         object-fit: cover;
     }
 
     .div-list-users a p {
         text-align: center;
+        color: var(--font-color);
     }
+
+
+
+/*
+
+    
+
+#userlistpartialzone {
+    background-color: #455e6a;
+    padding: 50px 20px;
+    margin: 0;
+    width: 100%;
+}
+
+.div-list-users {
+    margin: 10px 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+    .div-list-users a {
+        color: #696969;
+        text-decoration: none;
+        background-color: white;
+        border-radius: 50%;
+        width: 100px;
+        height: 100px;
+        text-align: center;
+    }
+
+        .div-list-users a img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .div-list-users a p {
+            text-align: center;
+        }
+
+
+*/

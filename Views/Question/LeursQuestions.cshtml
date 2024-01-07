@@ -91,20 +91,20 @@ else
         </div>
         }
       </div>
-   </div>
+  
 
+        <div id="userlistpartialzone"> </div>
 
-        </br>
-        </br>
-        </br>
-        </br>
-        </br>
-        </br>
-        </br>
+     
+      </div>
+
+        
 
    </main></div>
 
-
+    <script>
+    </script>
+        
 
 <script>
     $(".div-btn-choix").css("justify-content", "center")
@@ -114,18 +114,15 @@ else
     $("#btn-mes-questions").css("color", "#f3ebff");
     $("#btn-mes-questions").css("background-color", "#9a7ce3");
 
-      
-       
-       
 
 </script>
 
 @section Scripts{
     <script>
 
+        $('#userlistpartialzone').load("/User/ListPartial")
 
         $(document).ready(function () {
-
             const id = @ViewData["iduser_compte"];
             console.log(id)
             $('#userpartialzone').load("/User/UserPartial?id=" + id + "")
