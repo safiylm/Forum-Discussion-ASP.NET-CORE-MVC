@@ -8,11 +8,9 @@
     <h1> Topics </h1>
     <div class="div-list-topic">
 
-
     @foreach (var item in Model)
     {
-            <div class="div-topic"> <a href="/Topic/TopicName?name=@item">@item</a></div>
+        <a href="/Topic/TopicName?name=@item">@item</a>
     }
-
     </div>
 </div>

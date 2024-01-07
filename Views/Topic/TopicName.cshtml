@@ -188,24 +188,38 @@ else
 </div>
 
 <script>
+
+
     $("#div-resolu").hide()
+    $(".div-btn- button").css("color", "black");
     $(".div-btn- button").css("background-color", "transparent");
+
     $("#btn-nn-repondu").css("background-color", "#9a7ce3");
+    $("#btn-nn-repondu").css("color", "white");
 
     $("#btn-nn-repondu").click(function () {
+
         $("#div-nn-repondu").show()
         $("#div-resolu").hide()
-        $(".div-btn- button").css("background-color", "transparent");
+        $("#btn-resolu").css("color", "black");
+        $("#btn-resolu").css("background-color", "transparent");
+
         $("#btn-nn-repondu").css("background-color", "#9a7ce3");
+        $("#btn-nn-repondu").css("color", "white");
 
     })
     $("#btn-resolu").click(function () {
         $("#div-nn-repondu").hide()
         $("#div-resolu").show()
-        $(".div-btn- button").css("background-color", "transparent");
+
+        $("#btn-nn-repondu").css("color", "black");
+        $("#btn-nn-repondu").css("background-color", "transparent");
+
         $("#btn-resolu").css("background-color", "#9a7ce3");
+        $("#btn-resolu").css("color", "white");
     })
 
 
-</script>
 
+
+</script>
