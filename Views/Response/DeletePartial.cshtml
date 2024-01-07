@@ -1,0 +1,50 @@
+﻿@model Forum_descussion_ASP.NET_core_mvc.Models.ResponseModel
+
+@{
+    ViewData["Title"] = "Delete";
+}
+<link rel="stylesheet" href="~/css/response_edit_delete.css" />
+
+
+<h3>Êtes-vous de vouloir supprimer votre réponse? </h3>
+
+<div style="background-color:white; color: black; padding: 20px; width: 100%; margin:10px 0; border-radius: 10px;">
+    @Html.DisplayFor(model => model.ResponseContent)
+
+    <form asp-action="Delete" style="margin: 30px auto; display: block; text-align:center;">
+        <input type="hidden" asp-for="Id" />
+
+        <button type="submit" class="btn btn-danger"> Supprimer </button> 
+
+        <button onclick="response_delete_close()" type="button" class="btn btn-light">
+            Annuler
+        </button>
+    </form>
+
+
+
+</div>
+
+
+<style>
+    body {
+        position: relative;
+        width: 100vw;
+        min-height: 100vh;
+        height: 100%;
+    }
+
+    #delete_response_partialzone {
+        position: fixed;
+        width: 800px;
+        height: 500px;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        opacity: 1;
+        z-index: 1;
+        padding: 30px;
+        background-color: crimson;
+        color: white;
+    }
+</style>

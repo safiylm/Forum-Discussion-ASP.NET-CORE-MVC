@@ -36,8 +36,6 @@ namespace Forum_descussion_ASP.NET_core_mvc.Controllers
                 ViewData["QuestionId"] = new SelectList(_context.QuestionModel, "Id", "Id");
                 ViewData["UserId"] = new SelectList(_context.UserModel, "Id", "Id");
                 return PartialView();
-   
-
         }
 
         [HttpPost]
@@ -58,7 +56,7 @@ namespace Forum_descussion_ASP.NET_core_mvc.Controllers
             return View(responseModel);
         }
 
-        public async Task<IActionResult> Edit(int? id)
+        public async Task<IActionResult> EditPartial(int? id)
         {
             if (id == null || _context.ResponseModel == null)
             {
@@ -77,7 +75,7 @@ namespace Forum_descussion_ASP.NET_core_mvc.Controllers
                 ViewData["QuestionId"] = responseModel.QuestionId;
                 //ViewData["QuestionId"] = new SelectList(_context.QuestionModel, "Id", "Id", responseModel.QuestionId);
                 ViewData["UserId"] = HttpContext.Session.GetInt32("iduser");
-                return View(responseModel);
+                return PartialView(responseModel);
             }
             return RedirectToAction("Connexion", "user");
 
@@ -122,7 +120,7 @@ namespace Forum_descussion_ASP.NET_core_mvc.Controllers
            // return View(responseModel);
         }
 
-        public async Task<IActionResult> Delete(int? id)
+        public async Task<IActionResult> DeletePartial(int? id)
         {
             if (id == null || _context.ResponseModel == null)
             {
@@ -142,7 +140,7 @@ namespace Forum_descussion_ASP.NET_core_mvc.Controllers
                 return NotFound();
             }
 
-            return View(responseModel);
+            return PartialView(responseModel);
             }
 
             return RedirectToAction("Connexion", "user");

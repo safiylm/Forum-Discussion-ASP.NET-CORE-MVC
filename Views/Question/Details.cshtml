@@ -27,8 +27,6 @@ else
 <div class="container">
     <main role="main" class="pb-3">
 
-     
-
         <div class="forum-question1">
             <div class="question-categorie"> Posted in: 
 
@@ -81,14 +79,13 @@ else
             </div>
             
         </div>
-
-
+        
+        <div id="edit_response_partialzone"></div>
+        <div id="delete_response_partialzone"></div>
     @foreach (var item in Model)
     {
-      
-
+     
     <div class="forum-reponse">
-
 
                 <div class="div-corps">
                     <div class="left">
@@ -96,16 +93,18 @@ else
 
                             @if (item.UserId.Equals(iduser))
                             {
-                                <a class="btn-edit-response" asp-controller="Response" asp-action="Edit" asp-route-id="@item.Id">
+                                @*<a class="btn-edit-response" asp-controller="Response" asp-action="Edit" asp-route-id="@item.Id">*@
+                            <button class="btn-edit-response" onclick="open_edit_reponse(@item.Id)">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-pen" viewBox="0 0 16 16">
                                         <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001m-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z" />
                                     </svg>
-                                </a> <br />
-                                <a class="btn-delete-response" asp-controller="Response" asp-action="Delete" asp-route-id="@item.Id">
+                            </button> <br />
+
+                            <button onclick="open_delete_reponse(@item.Id)" class="btn-edit-response">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
                                         <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0" />
                                     </svg>
-                                </a>
+                            </button>
 
                             }
                             else
@@ -140,7 +139,6 @@ else
 
                     </div>
 
-
                     <div class="right">
                         <div>
                             <div class="reponse-auteur-nom">  <a href="/Question/LeursQuestions/@item.UserId"> @Html.DisplayFor(modelItem => item.User.NameUser ) </a></div>
@@ -160,20 +158,15 @@ else
                             }
                         </div>
                   </div>
-  
 </div>
-     
-
-@*     Impossible d'appliquer l'opérateur '==' aux opérandes de type 'int' et 'object'	  
-*@
-
-     
+         
     }
 
     <div id="createreponse"></div>
 
         @section Scripts{
             <script>
+
                 function removeBonneReponse() {
                     let text = "Cette réponse n'est pas la bonne ?";
                     if (confirm(text) == true) {
@@ -190,13 +183,40 @@ else
 
 
                 $('#updatereponse').hide();
-                $('#updatereponse').load("/Response/Edit?id=" + @idquestion)
+               // $('#updatereponse').load("/Response/Edit?id=" + @idquestion)
 
                 $('#createreponse').load("/Response/Create?id=" + @idquestion)
+
+
+
+
+
+
+                function response_delete_close() {
+                    $("#delete_response_partialzone").hide();
+
+                }
+
+                function response_edit_close() {
+                    $("#edit_response_partialzone").hide();
+
+                }
+
+             
+
+                function open_edit_reponse( id ) {
+                    $('#edit_response_partialzone').load("/Response/EditPartial?id=" + id)
+                    $("#edit_response_partialzone").show();
+                }
+
+                function open_delete_reponse(id) {
+                    $('#delete_response_partialzone').load("/Response/DeletePartial?id=" + id)
+                    $("#delete_response_partialzone").show();
+                }
             </script>
         }
        
-        </br></br></br></br></br>
+      
        
 
     </main></div>

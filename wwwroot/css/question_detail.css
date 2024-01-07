@@ -80,6 +80,8 @@ a {
 .btn-edit-response, .btn-delete-response {
     color: dimgrey;
     padding: 7px 13px 7px 0;
+    border:none;
+    background-color:transparent;
 }
 
 

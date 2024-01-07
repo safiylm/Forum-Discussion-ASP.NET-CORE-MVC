@@ -1,0 +1,55 @@
+﻿@model Forum_descussion_ASP.NET_core_mvc.Models.ResponseModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+<link rel="stylesheet" href="~/css/response_edit_delete.css" />
+        <h3>Modifier votre réponse :</h3>
+
+        <form asp-action="Edit" id="form-edit-reponse">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" value="@ViewData["ResponseId"]" />
+            <input type="hidden" asp-for="UserId" value="@ViewData["UserId"]" />
+            <input type="hidden" asp-for="QuestionId" value="@ViewData["QuestionId"]" />
+            <input type="hidden" asp-for="DateCreation" value="@DateTime.Now" />
+
+         
+            <div class="form-group">
+                <textarea asp-for="ResponseContent" class="form-control" ></textarea>
+                <span asp-validation-for="ResponseContent" class="text-danger"></span>
+            </div>
+          
+            <div class="form-group" style="margin: 12px auto; display: block; text-align:center;">
+                <button type="submit" class="btn btn-primary"> Modifier </button> 
+
+                <button type="button" onclick="response_edit_close()" class="btn btn-light">
+                    Annuler
+                </button>
+            </div>
+
+
+        </form>
+
+
+         <style>
+    body {
+        position: relative;
+        width: 100vw;
+        min-height: 100vh;
+        height: 100%;
+    }
+
+             #edit_response_partialzone {
+                 position: fixed;
+                 width: 800px;
+                 height: 500px;
+                 top: 50%;
+                 left: 50%;
+                 transform: translate(-50%, -50%);
+                 opacity: 1;
+                 z-index: 1;
+                 padding: 30px;
+                 background-color: #9a7ce3;
+                 color: white;
+             }
+         </style>
