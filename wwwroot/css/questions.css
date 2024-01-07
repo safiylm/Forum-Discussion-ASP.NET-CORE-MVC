@@ -19,13 +19,13 @@ a {
 }
 
 
-.div-topics-all-questions div:first-child {
-    flex : 20%;
-}
-
-    .div-topics-all-questions div:last-child {
-        flex: 80%;
+.div-topics-all-questions #topiclistpartialzone {
+        flex: 20%;
     }
+
+.div-topics-all-questions-main{
+    flex: 80%;
+}
 
 
 .div-list-question-and-user{
