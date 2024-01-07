@@ -1,14 +1,39 @@
-
-
+:root {
+    --font-color: rgb(30, 30, 70);
+}
+.container{
+    max-width:100vw;
+}
 a {
     text-decoration: none;
-    color: dimgrey;
+    color: var(--font-color);
+}
+
+.div-topics-all-questions{
+    display:flex;
+    flex-direction:row;
+    flex-wrap:nowrap;
+    align-items:flex-start;
+    justify-content:center;
+    width:95vw;
 }
 
 
+.div-topics-all-questions div:first-child {
+    flex : 20%;
+}
+
+    .div-topics-all-questions div:last-child {
+        flex: 80%;
+    }
+
+
+.div-list-question-and-user{
+    width: 100%;
+}
+
 .btnnn {
     background-color: #9a7ce3;
-    color: white;
     padding: 7px 13px;
     border-radius: 7px;
 }
@@ -20,16 +45,7 @@ a {
     border-radius: 15px;
 }
 
-h1 {
-    color: white;
-    font-size: 18px;
-}
 
-h1 a {
-   text-decoration: none;
-   /*color: black;*/
-   color:white;
-}
 
 .question .titre a, .div-categorie a {
     text-decoration: none;
@@ -59,12 +75,18 @@ h1 a {
 }
     .div-btn-choix a {
         text-decoration: none;
-        color: white;
+        color: black;
     }
 
 
-    .div-btn- button {
+   .buttonactive {
         color: white;
+        background-color: #9a7ce3;
+    }
+
+   .buttoninactive {
+        color: rgb(30,30,70);
+        background-color : transparent;
     }
 
 .div-liste-questions, .div-nb, .titre, .nb-answers {

@@ -4,6 +4,7 @@ body {
     /*background-color: #9a7ce3;*/
     background-color: #8677ac;
     /*background-color: #455e6a;*/
+    background-color: whitesmoke;
 }
 
 
@@ -12,3 +13,19 @@ body {
     margin: 0;
     box-sizing: border-box;
 }
+
+:root {
+    --font-color: rgb(30, 30, 70);
+}
+
+.pb-3 h1:first-child {
+    color: var(--font-color);
+    font-size: 18px;
+}
+
+    .pb-3 h1:first-child a {
+        color: var(--font-color);
+    }
+    .pb-3 h1:first-child svg {
+        color: var(--font-color);
+    }

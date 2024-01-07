@@ -3,7 +3,7 @@
 @{
     ViewData["Title"] = "Index";
 }
-<link rel="stylesheet" href="css/questions.css" />
+<link rel="stylesheet" href="~/css/questions.css" />
 
 
 @if ( ViewData["iduser"]== null){
@@ -26,12 +26,14 @@
 
 
 </br>
-<div class="div-btn-">
-    <button id="btn-nn-repondu">Toutes les questions </button>
-    <button id="btn-resolu">Résolu</button>
-</div>
+<div class="div-topics-all-questions">
+    <div id="topiclistpartialzone"> </div>
+    <div class="div-list-question-and-user">
+     <div class="div-btn-">
+           <button id="btn-nn-repondu">Toutes les questions </button>
+           <button id="btn-resolu">Résolu</button>
+     </div>
 
-<div class="div-list-question-and-user">
     <div class="div-list-question">
         <div id="div-nn-repondu">
             <div class="div-liste-questions">
@@ -105,7 +107,7 @@
 
         <div id="div-resolu">
 
-                    <div class="div-liste-questions">
+             <div class="div-liste-questions">
 
                         @foreach (var item in Model)
                         {
@@ -168,31 +170,54 @@
     </div>
 
 </div>
+</div>
+       
+
+        @section Scripts{
+            <script>
+                $('#topiclistpartialzone').load("/Topic/ListPartial")
+            </script>
+        }
 
         </br>
         </br>
-        </br>
+       
 
 </main></div>
 
 <script>
+   
+
     $("#div-resolu").hide()
+    $(".div-btn- button").css("color", "black");
     $(".div-btn- button").css("background-color", "transparent");
+       
     $("#btn-nn-repondu").css("background-color", "#9a7ce3");
+    $("#btn-nn-repondu").css("color", "white");
 
     $("#btn-nn-repondu").click(function () {
+            
         $("#div-nn-repondu").show()
         $("#div-resolu").hide()
-        $(".div-btn- button").css("background-color", "transparent");
-        $("#btn-nn-repondu").css("background-color", "#9a7ce3");
+            $("#btn-resolu").css("color", "black");
+            $("#btn-resolu").css("background-color", "transparent");
+
+            $("#btn-nn-repondu").css("background-color", "#9a7ce3");
+            $("#btn-nn-repondu").css("color", "white");
 
     })
     $("#btn-resolu").click(function () {
         $("#div-nn-repondu").hide()
-        $("#div-resolu").show()
-        $(".div-btn- button").css("background-color", "transparent");
-        $("#btn-resolu").css("background-color", "#9a7ce3");
+            $("#div-resolu").show()
+
+            $("#btn-nn-repondu").css("color", "black");
+            $("#btn-nn-repondu").css("background-color", "transparent");
+
+            $("#btn-resolu").css("background-color", "#9a7ce3");
+            $("#btn-resolu").css("color", "white");
     })
+
+
   
 
 </script>

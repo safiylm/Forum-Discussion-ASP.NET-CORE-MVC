@@ -1,17 +1,5 @@
 
 
-h1 {
-    color: white;
-    font-size: 18px;
-}
-
-    h1 a {
-        text-decoration: none;
-        /*color: black;*/
-        color: white;
-    }
-
-
 .forum-question1 h3 {
     margin: 20px 0;
 }
