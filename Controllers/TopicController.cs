@@ -28,13 +28,17 @@ namespace Forum_descussion_ASP.NET_core_mvc.Controllers
             return View(topic_list );
         }
 
-        public IActionResult ListPartial()
+        public IActionResult ListPartial(string name)
         {
             string[] topic_list = { "Programmation-Web", "Developpment-yourself", "Tue", "Wed", "Thu", "Sat" };
             ViewData["topic_list"] = topic_list;
+            ViewData["name"] = name;
             return PartialView(topic_list);
 
         }
+
+      
+
 
         public async Task<IActionResult> TopicName(string name)
         {

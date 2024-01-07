@@ -7,10 +7,17 @@
 <div class="page-list-topic">
     <h1> Topics </h1>
     <div class="div-list-topic">
-
     @foreach (var item in Model)
     {
-        <a href="/Topic/TopicName?name=@item">@item</a>
+            if (item.Equals( ViewData["name"] ))
+        {
+                <a href="/Topic/TopicName?name=@item" style="font-weight:800; color: #9a7ce3; text-decoration:underline;">@item</a>
+
+        }else{
+                <a href="/Topic/TopicName?name=@item">@item</a>
+
+        }
+
     }
     </div>
 </div>
