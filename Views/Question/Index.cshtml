@@ -70,7 +70,8 @@
                                 </h3>
                                 <p>
                                     <a asp-action="Details" asp-route-id="@item.Id">
-                                        @Html.DisplayFor(modelItem => item.Description)
+                                                    @*@Html.DisplayFor(modelItem => item.Description)*@
+                                                    @Html.Raw( item.Description)
                                     </a>
                                 </p>
                                      <a asp-controller="Question" asp-action="LeursQuestions" asp-route-Id="@item.UserId">
@@ -133,7 +134,9 @@
                                         </h3>
                                         <p>
                                             <a asp-action="Details" asp-route-id="@item.Id">
-                                                @Html.DisplayFor(modelItem => item.Description)
+                                                @*@Html.DisplayFor(modelItem => item.Description)*@
+                                                        @Html.Raw( item.Description)
+
                                             </a>
                                         </p>
                                         <a asp-controller="Question" asp-action="LeursQuestions" asp-route-Id="@item.UserId">

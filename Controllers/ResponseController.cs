@@ -71,6 +71,7 @@ namespace Forum_descussion_ASP.NET_core_mvc.Controllers
                     return NotFound();
                 }
                 ViewData["ResponseId"] =id;
+                ViewData["ResponseContent"] = responseModel.ResponseContent;
 
                 ViewData["QuestionId"] = responseModel.QuestionId;
                 //ViewData["QuestionId"] = new SelectList(_context.QuestionModel, "Id", "Id", responseModel.QuestionId);

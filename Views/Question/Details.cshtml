@@ -73,7 +73,8 @@ else
                 </div>
 
                 <div class="question-contenu">
-                    @ViewData["Description"]
+                   
+                        @Html.Raw( @ViewData["Description"])
                 </div>
             </div>
             </div>
@@ -145,7 +146,8 @@ else
                             <div class="reponse-date-creation">  @Html.DisplayFor(modelItem => item.DateCreation , "{0:MM/dd/yyyy}") </div>
                         </div>
                         <div class="reponse-contenu">
-                            @Html.DisplayFor(modelItem => item.ResponseContent)
+                            @*@Html.DisplayFor(modelItem => item.ResponseContent)*@
+                            @Html.Raw(item.ResponseContent)
                         </div>
                           @if (idSolution.Equals(0))
                             {
