@@ -1,20 +1,104 @@
 ﻿@model Forum_descussion_ASP.NET_core_mvc.Models.ResponseModel
+<link rel="stylesheet" href="~/css/ajouter-forum.css" />
 
-        <form asp-action="Create">
+<form asp-action="Create" method="post" onsubmit="return getContent()">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 
             <input type="hidden" asp-for="QuestionId" value="@ViewData["idquestion"]" />
            
-                <div class="form-group">
-                <label asp-for="ResponseContent" class="control-label"> Ajouter une réponse </label><br/>
-                <textarea asp-for="ResponseContent" class="form-control" required style="width:100%; height: 110px;"></textarea>
-                <span asp-validation-for="ResponseContent" class="text-danger"></span>
-            </div>
-               <input type="hidden" asp-for="DateCreation"  />
+            <div class="form-group">
+        <div class="options">
+            <!-- Text Format -->
+            <button type="button" id="bold" class="option-button format">
+                <i class="fa-solid fa-bold"></i>
+            </button>
+            <button type="button" id="italic" class="option-button format">
+                <i class="fa-solid fa-italic"></i>
+            </button>
+            <button type="button" id="underline" class="option-button format" onclick="makeunderline()">
+                <i class="fa-solid fa-underline"></i>
+            </button>
+
+
+
+            <!-- List -->
+            <button type="button" id="insertOrderedList" class="option-button">
+                <div class="fa-solid fa-list-ol"></div>
+            </button>
+            <button type="button" id="insertUnorderedList" class="option-button">
+                <i class="fa-solid fa-list"></i>
+            </button>
+
+            <!-- Link -->
+            <button type="button" id="createLink" class="adv-option-button">
+                <i class="fa fa-link"></i>
+            </button>
+            <button type="button" id="unlink" class="option-button">
+                <i class="fa fa-unlink"></i>
+            </button>
+
+            <!-- Alignment -->
+            <button type="button" id="justifyLeft" class="option-button align">
+                <i class="fa-solid fa-align-left"></i>
+            </button>
+            <button type="button" id="justifyCenter" class="option-button align">
+                <i class="fa-solid fa-align-center"></i>
+            </button>
+            <button type="button" id="justifyRight" class="option-button align">
+                <i class="fa-solid fa-align-right"></i>
+            </button>
+            <button type="button" id="justifyFull" class="option-button align">
+                <i class="fa-solid fa-align-justify"></i>
+            </button>
+            <button type="button" id="indent" class="option-button spacing">
+                <i class="fa-solid fa-indent"></i>
+            </button>
+            <button type="button" id="outdent" class="option-button spacing">
+                <i class="fa-solid fa-outdent"></i>
+            </button>
+        </div>
+
+                    <div id="textinput" contenteditable="true" style="width:100%; height: 110px; border: 2px solid gray; padding:5px;margin : 15px 0;">
+                    </div>
+
+                    <textarea asp-for="ResponseContent" id="my-textarea" style="display:none"></textarea>
+
+                    <span asp-validation-for="ResponseContent" class="text-danger"></span>
+             </div>
+            <input type="hidden" asp-for="DateCreation"  />
 
     <div class="form-group" style="padding: 20px; display:block; text-align: center;">
                 <input type="submit" value="Envoyer ma réponse" class="btn btn-primary" />
             </div>
 
         </form>
+
+<script>
+
+    function getContent() {
+        document.getElementById("my-textarea").value = document.getElementById("textinput").innerHTML;
+    }
+
+    let optionsButtons = document.querySelectorAll(".option-button");
+    let advancedOptionButton = document.querySelectorAll(".adv-option-button");
+
+    $("#textinput").css("color", "black")
+
+
+
+
+    optionsButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+            document.execCommand(button.id, false, button.value);
+        });
+    });
+
+    //options that require value parameter (e.g colors, fonts)
+    advancedOptionButton.forEach((button) => {
+        button.addEventListener("change", () => {
+            modifyText(button.id, false, button.value);
+        });
+    });
+
+</script>
 
