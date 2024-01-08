@@ -14,6 +14,17 @@ body {
     box-sizing: border-box;
 }
 
+*::selection {
+    background-color: hotpink;
+    color: white;
+}
+
+code::selection {
+    background-color: #9a7ce3;
+    color: white;
+}
+
+
 :root {
     --font-color: rgb(30, 30, 70);
 }
