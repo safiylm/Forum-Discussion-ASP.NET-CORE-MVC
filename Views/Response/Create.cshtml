@@ -1,13 +1,13 @@
 ﻿@model Forum_descussion_ASP.NET_core_mvc.Models.ResponseModel
 <link rel="stylesheet" href="~/css/ajouter-forum.css" />
 
-<form asp-action="Create" method="post" onsubmit="return getContent()">
+<form asp-action="Create" method="post" onsubmit="return getContent()" id="div-create-reponse" class="div-form-ajouter-forum">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 
             <input type="hidden" asp-for="QuestionId" value="@ViewData["idquestion"]" />
            
             <div class="form-group">
-        <div class="options">
+            <div class="options">
             <!-- Text Format -->
             <button type="button" id="bold" class="option-button format">
                 <i class="fa-solid fa-bold"></i>
@@ -58,34 +58,29 @@
             </button>
         </div>
 
-                    <div id="textinput" contenteditable="true" style="width:100%; height: 110px; border: 2px solid gray; padding:5px;margin : 15px 0;">
+        <div id="textinputcreate" contenteditable="true" style="width:100%; height: 110px; border: 2px solid gray; padding:5px;margin : 15px 0;">
                     </div>
 
-                    <textarea asp-for="ResponseContent" id="my-textarea" style="display:none"></textarea>
+        <textarea asp-for="ResponseContent" id="my-textarea-create" style="display:none"></textarea>
 
                     <span asp-validation-for="ResponseContent" class="text-danger"></span>
              </div>
             <input type="hidden" asp-for="DateCreation"  />
 
-    <div class="form-group" style="padding: 20px; display:block; text-align: center;">
+            <div class="form-group" style="padding: 20px; display:block; text-align: center;">
                 <input type="submit" value="Envoyer ma réponse" class="btn btn-primary" />
             </div>
 
-        </form>
+</form>
 
 <script>
 
     function getContent() {
-        document.getElementById("my-textarea").value = document.getElementById("textinput").innerHTML;
+        document.getElementById("my-textarea-create").value = document.getElementById("textinputcreate").innerHTML;
     }
 
-    let optionsButtons = document.querySelectorAll(".option-button");
-    let advancedOptionButton = document.querySelectorAll(".adv-option-button");
-
-    $("#textinput").css("color", "black")
-
-
-
+    let optionsButtons = document.querySelectorAll("#div-create-reponse .option-button");
+    let advancedOptionButton = document.querySelectorAll("#div-create-reponse .adv-option-button");
 
     optionsButtons.forEach((button) => {
         button.addEventListener("click", () => {
@@ -101,4 +96,3 @@
     });
 
 </script>
-

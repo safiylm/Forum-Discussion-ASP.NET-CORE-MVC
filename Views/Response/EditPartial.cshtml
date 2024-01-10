@@ -6,7 +6,7 @@
 <link rel="stylesheet" href="~/css/response_edit_delete.css" />
         <h3>Modifier votre réponse :</h3>
 
-        <form asp-action="Edit" id="form-edit-reponse">
+<form asp-action="Edit" id="form-edit-reponse" method="post" onsubmit="return getContentEdit()" class="div-form-ajouter-forum">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" value="@ViewData["ResponseId"]" />
             <input type="hidden" asp-for="UserId" value="@ViewData["UserId"]" />
@@ -15,8 +15,64 @@
 
          
             <div class="form-group">
-                <textarea asp-for="ResponseContent" class="form-control" ></textarea>
-                <span asp-validation-for="ResponseContent" class="text-danger"></span>
+                <div class="options">
+                    <!-- Text Format -->
+                    <button type="button" id="bold" class="option-button format">
+                        <i class="fa-solid fa-bold"></i>
+                    </button>
+                    <button type="button" id="italic" class="option-button format">
+                        <i class="fa-solid fa-italic"></i>
+                    </button>
+                    <button type="button" id="underline" class="option-button format" onclick="makeunderline()">
+                        <i class="fa-solid fa-underline"></i>
+                    </button>
+
+
+
+                    <!-- List -->
+                    <button type="button" id="insertOrderedList" class="option-button">
+                        <div class="fa-solid fa-list-ol"></div>
+                    </button>
+                    <button type="button" id="insertUnorderedList" class="option-button">
+                        <i class="fa-solid fa-list"></i>
+                    </button>
+
+                    <!-- Link -->
+                    <button type="button" id="createLink" class="adv-option-button">
+                        <i class="fa fa-link"></i>
+                    </button>
+                    <button type="button" id="unlink" class="option-button">
+                        <i class="fa fa-unlink"></i>
+                    </button>
+
+                    <!-- Alignment -->
+                    <button type="button" id="justifyLeft" class="option-button align">
+                        <i class="fa-solid fa-align-left"></i>
+                    </button>
+                    <button type="button" id="justifyCenter" class="option-button align">
+                        <i class="fa-solid fa-align-center"></i>
+                    </button>
+                    <button type="button" id="justifyRight" class="option-button align">
+                        <i class="fa-solid fa-align-right"></i>
+                    </button>
+                    <button type="button" id="justifyFull" class="option-button align">
+                        <i class="fa-solid fa-align-justify"></i>
+                    </button>
+                    <button type="button" id="indent" class="option-button spacing">
+                        <i class="fa-solid fa-indent"></i>
+                    </button>
+                    <button type="button" id="outdent" class="option-button spacing">
+                        <i class="fa-solid fa-outdent"></i>
+                    </button>
+                </div>
+
+            <div id="textinputedit" contenteditable="true"
+             style="width:100%; height: 110px; border: 2px solid gray; padding:5px;margin : 15px 0; color:black;">
+                    @Html.Raw( @ViewData["ResponseContent"])
+                </div>
+
+                <textarea asp-for="ResponseContent" id="my-textarea-edit" style="display:none"></textarea>
+
             </div>
           
             <div class="form-group" style="margin: 12px auto; display: block; text-align:center;">
@@ -53,3 +109,29 @@
                  color: white;
              }
          </style>
+
+
+
+<script>
+
+    function getContentEdit() {
+        document.getElementById("my-textarea-edit").value = document.getElementById("textinputedit").innerHTML;
+    }
+
+    let optionsButtons2 = document.querySelectorAll("#form-edit-reponse .option-button");
+    let advancedOptionButton2 = document.querySelectorAll("#form-edit-reponse .adv-option-button");
+
+    optionsButtons2.forEach((button) => {
+        button.addEventListener("click", () => {
+            document.execCommand(button.id, false, button.value);
+        });
+    });
+
+    //options that require value parameter (e.g colors, fonts)
+    advancedOptionButton2.forEach((button) => {
+        button.addEventListener("change", () => {
+            modifyText(button.id, false, button.value);
+        });
+    });
+
+</script>
