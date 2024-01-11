@@ -196,7 +196,7 @@ namespace Forum_descussion_ASP.NET_core_mvc.Controllers
 
         [HttpGet]
         // GET: UserModels/Edit/5
-        public async Task<IActionResult> Edit()
+        public async Task<IActionResult> EditPartial()
         {
             if (_context.UserModel == null)
             {
@@ -215,7 +215,7 @@ namespace Forum_descussion_ASP.NET_core_mvc.Controllers
                 }
                 if (userModel.Id == HttpContext.Session.GetInt32("iduser")) //user can see only his data 
 
-                    return View(userModel);
+                    return PartialView(userModel);
 
             }
             return RedirectToAction("Connexion");
@@ -249,7 +249,7 @@ namespace Forum_descussion_ASP.NET_core_mvc.Controllers
 
 
         // GET: UserModels/Delete/5
-        public async Task<IActionResult> Delete()
+        public async Task<IActionResult> DeletePartial()
         {
             if (HttpContext.Session.GetInt32("iduser") != null)
             {
@@ -270,7 +270,7 @@ namespace Forum_descussion_ASP.NET_core_mvc.Controllers
                 }
                 if (userModel.Id == HttpContext.Session.GetInt32("iduser"))
 
-                    return View(userModel);
+                    return PartialView(userModel);
             }
 
             return RedirectToAction("Connexion");
