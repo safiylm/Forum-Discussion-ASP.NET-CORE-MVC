@@ -25,4 +25,5 @@ a {
     padding: 30px;
     margin: 20px auto;
     border-radius: 15px;
+    max-width: 900px;
 }
