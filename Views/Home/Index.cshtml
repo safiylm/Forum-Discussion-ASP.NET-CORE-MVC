@@ -21,167 +21,19 @@ else
 <div class="container">
     <main role="main" class="pb-3">
 
-
-        </br>
         <div class="div-topics-all-questions">
-
             <div id="topiclistpartialzone"> </div>
-
             <div class="div-topics-all-questions-main">
-                <div class="div-btn-">
-                    <button id="btn-nn-repondu">Toutes les questions </button>
-                    <button id="btn-resolu">Résolu</button>
-                </div>
-
-                <div class="div-list-question">
-                    <div id="div-nn-repondu">
-                        <div class="div-liste-questions">
-
-                            @foreach (var item in Model)
-                            {
-
-                                @*   <a asp-action="Details" asp-route-id="@item.Id">
-                            @Html.DisplayFor(modelItem => item.User.ID)
-                            </a> *@
-
-                                <div class="question">
-
-                                    <div class="div-nb">
-                                        <div>
-                                            @if (item.isResolu)
-                                            {
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" color="#318CE7" fill="currentColor" class="bi bi-patch-check-fill" viewBox="0 0 16 16">
-                                                    <path d="M10.067.87a2.89 2.89 0 0 0-4.134 0l-.622.638-.89-.011a2.89 2.89 0 0 0-2.924 2.924l.01.89-.636.622a2.89 2.89 0 0 0 0 4.134l.637.622-.011.89a2.89 2.89 0 0 0 2.924 2.924l.89-.01.622.636a2.89 2.89 0 0 0 4.134 0l.622-.637.89.011a2.89 2.89 0 0 0 2.924-2.924l-.01-.89.636-.622a2.89 2.89 0 0 0 0-4.134l-.637-.622.011-.89a2.89 2.89 0 0 0-2.924-2.924l-.89.01zm.287 5.984-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7 8.793l2.646-2.647a.5.5 0 0 1 .708.708" />
-                                                </svg>
-                                            }
-                                            else
-                                            {
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" color="green" fill="currentColor" class="bi bi-caret-up-fill" viewBox="0 0 16 16">
-                                                    <path d="m7.247 4.86-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 0 0 .753-1.659l-4.796-5.48a1 1 0 0 0-1.506 0z" />
-                                                </svg>
-                                                <p></p>
-                                            }
-                                        </div>
-                                    </div>
-
-                                    <div class="titre">
-                                        <a asp-area="" asp-controller="Forum" asp-action="Index">
-
-                                            <h3>
-                                                <a asp-controller="Question" asp-action="Details" asp-route-id="@item.Id">
-                                                    @Html.DisplayFor(modelItem => item.Titre)
-
-                                                </a>
-                                            </h3>
-                                            <p>
-                                                <a asp-controller="Question" asp-action="Details" asp-route-id="@item.Id">
-                                                    @*@Html.DisplayFor(modelItem => item.Description)*@
-                                                    @Html.Raw( item.Description)
-                                                </a>
-                                            </p>
-                                            <a asp-controller="Question" asp-action="LeursQuestions" asp-route-Id="@item.UserId">
-
-                                                Auteur :  @Html.DisplayFor(modelItem => item.User.NameUser)
-                                            </a>
-                                        </a>
-                                    </div>
-
-                                    <div class="div-categorie">
-
-                                        <a href="/Topic/TopicName?name=@item.Topic">
-
-                                            @Html.DisplayFor(modelItem => item.Topic)
-                                        </a>
-
-                                    </div>
-
-                                    <div class="nb-answers">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat-left-text" viewBox="0 0 16 16">
-                                            <path d="M14 1a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H4.414A2 2 0 0 0 3 11.586l-2 2V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12.793a.5.5 0 0 0 .854.353l2.853-2.853A1 1 0 0 1 4.414 12H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z" />
-                                            <path d="M3 3.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zM3 6a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9A.5.5 0 0 1 3 6zm0 2.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5z" />
-                                        </svg>
-                                        <p></p>
-                                    </div>
-                                </div>
-                            }
-                        </div>
-                    </div>
-
-                    <div id="div-resolu">
-
-                        <div class="div-liste-questions">
-
-                            @foreach (var item in Model)
-                            {
-                                @if (item.isResolu)
-                                {
-                                    <div class="question">
-
-                                        <div class="div-nb">
-                                            <div>
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" color="#318CE7" fill="currentColor" class="bi bi-patch-check-fill" viewBox="0 0 16 16">
-                                                    <path d="M10.067.87a2.89 2.89 0 0 0-4.134 0l-.622.638-.89-.011a2.89 2.89 0 0 0-2.924 2.924l.01.89-.636.622a2.89 2.89 0 0 0 0 4.134l.637.622-.011.89a2.89 2.89 0 0 0 2.924 2.924l.89-.01.622.636a2.89 2.89 0 0 0 4.134 0l.622-.637.89.011a2.89 2.89 0 0 0 2.924-2.924l-.01-.89.636-.622a2.89 2.89 0 0 0 0-4.134l-.637-.622.011-.89a2.89 2.89 0 0 0-2.924-2.924l-.89.01zm.287 5.984-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7 8.793l2.646-2.647a.5.5 0 0 1 .708.708" />
-                                                </svg>
-                                            </div>
-                                        </div>
-
-                                        <div class="titre">
-                                            <a asp-area="" asp-controller="Forum" asp-action="Index">
-
-                                                <h3>
-                                                    <a asp-action="Details" asp-route-id="@item.Id">
-                                                        @Html.DisplayFor(modelItem => item.Titre)
-
-                                                    </a>
-                                                </h3>
-                                                <p>
-                                                    <a asp-action="Details" asp-route-id="@item.Id">
-                                                        @*@Html.DisplayFor(modelItem => item.Description)*@
-                                                        @Html.Raw( item.Description)
-                                                    </a>
-                                                </p>
-                                                <a asp-controller="Question" asp-action="LeursQuestions" asp-route-Id="@item.UserId">
-
-                                                    Auteur : @Html.DisplayFor(modelItem => item.User.NameUser)
-                                                </a>
-                                            </a>
-                                        </div>
-
-                                        <div class="div-categorie">
-
-                                            <a href="/Topic/TopicName?name=@item.Topic">
-                                                @Html.DisplayFor(modelItem => item.Topic)
-                                            </a>
-
-                                        </div>
-
-                                        <div class="nb-answers">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat-left-text" viewBox="0 0 16 16">
-                                                <path d="M14 1a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H4.414A2 2 0 0 0 3 11.586l-2 2V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12.793a.5.5 0 0 0 .854.353l2.853-2.853A1 1 0 0 1 4.414 12H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z" />
-                                                <path d="M3 3.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zM3 6a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9A.5.5 0 0 1 3 6zm0 2.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5z" />
-                                            </svg>
-                                            <p></p>
-                                        </div>
-                                    </div>
-                                }
-                            }
-                        </div>
-                    </div>
-                </div>
-
+                <partial name="../Shared/ListeDesQuestions.cshtml" />
             </div>
         </div>
-
-
+       
+     
         @section Scripts{
             <script>
                  $('#topiclistpartialzone').load("/Topic/ListPartial")
             </script>
         }
-
-            </br>
-            </br>
-
 
         </main>
     </div>
