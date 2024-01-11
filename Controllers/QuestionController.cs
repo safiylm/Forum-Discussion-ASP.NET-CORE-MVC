@@ -156,12 +156,12 @@ namespace Forum_descussion_ASP.NET_core_mvc.Controllers
                 ViewData["idquestion"] = id;
 
                 var questionModel = await _context.QuestionModel.FindAsync(id);
-
                 if (questionModel == null)
                 {
                     return NotFound();
                 }
                 //  ViewData["UserId"] = new SelectList(_context.Set<UserModel>(), "ID", "ID", questionModel.UserId);
+                ViewData["description"] = questionModel.Description;
 
                 if (questionModel.UserId == HttpContext.Session.GetInt32("iduser"))
                     return View(questionModel);
@@ -177,34 +177,37 @@ namespace Forum_descussion_ASP.NET_core_mvc.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,UserId,Titre,Topic,Description, DateCreation")] QuestionModel questionModel)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,UserId,Titre,Topic,Description")] QuestionModel questionModel)
         {
             if (id != questionModel.Id)
             {
                 return NotFound();
             }
 
-            // if (ModelState.IsValid) {
-            try
+            if (HttpContext.Session.GetInt32("iduser") == questionModel.UserId )
             {
-                _context.Update(questionModel);
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!QuestionModelExists(questionModel.Id))
+                // if (ModelState.IsValid) {
+                try
                 {
-                    return NotFound();
+                    questionModel.DateCreation = DateTime.Now;
+                    _context.QuestionModel.Update(questionModel);
+                    await _context.SaveChangesAsync();
                 }
-                else
+                catch (DbUpdateConcurrencyException)
                 {
-                    throw;
+                    if (!QuestionModelExists(questionModel.Id))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
                 }
+                return RedirectToAction(nameof(Index));
+
             }
-            return RedirectToAction(nameof(Index));
-            //  }
-            // ViewData["UserId"] = new SelectList(_context.Set<UserModel>(), "ID", "ID", questionModel.UserId);
-            return View(questionModel);
+            return RedirectToAction("Connexion", "User");
         }
 
         // GET: QuestionModels/Delete/5

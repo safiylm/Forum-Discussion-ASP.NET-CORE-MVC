@@ -17,7 +17,7 @@
 
   <div class="div-form-ajouter-forum">
     <div class="container">
-        <form asp-action="Edit" method="post">
+        <form asp-action="Edit" method="post" onsubmit="return getContent()">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" value="@ViewData["idquestion"]" />
 
