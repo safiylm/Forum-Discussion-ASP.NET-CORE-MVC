@@ -5,13 +5,12 @@
 <link rel="stylesheet" href="~/css/topic_listpartial.css" />
 
 <div class="page-list-topic">
-    <h1> Topics </h1>
     <div class="div-list-topic">
     @foreach (var item in Model)
     {
             if (item.Equals( ViewData["name"] ))
         {
-                <a href="/Topic/TopicName?name=@item" style="font-weight:800; color: #9a7ce3; text-decoration:underline;">@item</a>
+                <a href="/Topic/TopicName?name=@item" style="font-weight:800; color: #9a7ce3;  font-size: 20px;">@item</a>
 
         }else{
                 <a href="/Topic/TopicName?name=@item">@item</a>

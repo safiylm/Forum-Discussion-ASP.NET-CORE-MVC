@@ -3,8 +3,9 @@
 <div>
    
     @foreach (var item in Model) {
-        <div>
-            <strong> @Html.DisplayFor(modelItem => item.Titre) </strong>
+
+        <div id="div-enregistrements-item">
+          <div>  <strong> @Html.DisplayFor(modelItem => item.Titre) </strong> </div>
 
             <a href="/Enregistrement/postDeleteEnregistrement?idEnregistrement=@ViewData["idEnregistrement"]">Supprimer</a>
         </div>

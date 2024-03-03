@@ -1,8 +1,6 @@
 
 #topiclistpartialzone {
     background-color: white;
-    margin: 0px 30px;
-    padding: 20px;
     border-radius: 15px;
 }
 
@@ -16,7 +14,7 @@
 
 .div-list-topic {
    
-    margin: 20px auto;
+    margin: 0 auto;
     padding: 10px;
     border-radius: 15px;
 }

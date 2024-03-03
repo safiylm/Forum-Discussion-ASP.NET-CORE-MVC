@@ -7,6 +7,10 @@
     margin: 50px auto;
 }
 
+.form-group {
+    margin: 15px 0;
+
+}
 .container-user-delete h3, .container-user-edit h3{
     font-family:'Microsoft YaHei';
 

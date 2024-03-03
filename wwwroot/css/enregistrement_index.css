@@ -27,3 +27,17 @@ a {
     border-radius: 15px;
     max-width: 900px;
 }
+
+#div-enregistrements-item {
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin: 10px 0;
+}
+
+    #div-enregistrements-item a {
+        background-color: crimson;
+        padding: 5px 12px;
+        color: white;
+        border-radius: 5px;
+    }

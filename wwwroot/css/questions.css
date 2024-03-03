@@ -62,11 +62,13 @@ a {
 }
 
 .div-btn-, .div-btn-choix {
-    justify-content: flex-start;
+    justify-content: center;
 }
 
-
-.div-btn- button, .div-btn-choix button, .div-btn-choix a{
+.div-btn-choix {
+    margin: 15px 0;
+}
+    .div-btn- button, .div-btn-choix button, .div-btn-choix a{
         margin: 0 10px;
         padding: 5px 9px;
         border: none;
@@ -90,7 +92,7 @@ a {
         background-color : transparent;
     }
 
-.div-liste-questions, .div-nb, .titre, .nb-answers {
+.div-liste-questions,  .titre {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -110,15 +112,7 @@ a {
     margin: 20px auto;
 }
 
-.nb-answers, .div-nb {
-    align-items: center;
-}
 
-    .div-nb div {
-        border-radius: 5px;
-        padding: 6px 10px;
-        border: 1px solid #ddd;
-    }
 
 .titre h3 {
     font-size: 20px;
@@ -138,25 +132,40 @@ a {
         margin: 10px;
     }
 
-.div-nb, .nb-answers {
-    flex: 15%;
-}
+    .question #user-photo{
+        width: 50px;
+        height:50px;
+        object-fit:cover;
+        border-radius:50%;
+       margin : 2px 8px 10px 2px;
+    }
 
-.titre {
-    flex: 50%;
-}
+
+    .titre {
+        flex: 50%;
+    }
 
 .div-categorie {
     flex: 25%;
 }
 
+    .div-categorie a {
+        text-decoration: none;
+        color: #798591;
+        font-weight: bold;
+    }
 
 
-
-.div-edit, .div-delete {
+        .div-edit, .div-delete {
     flex: 5%;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
 }
+    .div-edit a, .div-delete a {
+        background-color: dodgerblue;
+        padding: 5px 12px;
+        color: white;
+        border-radius: 5px;
+    }

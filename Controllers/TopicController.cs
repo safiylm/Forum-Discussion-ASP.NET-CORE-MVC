@@ -16,21 +16,19 @@ namespace Forum_descussion_ASP.NET_core_mvc.Controllers
             _context = context;
         }
 
-    
+        private string[] topic_list = { "Programmation-Web", "Developpment-yourself", "Maison", "Cuisine", "Mariage", "Loisir", "Maigrir", "Animeaux", "Famille", "Psycologie", "Travil, Vie privée", "Grossesse", "Couple" };
+
 
         // GET: Response
         public IActionResult Index( )
         {
             ViewData["iduser"] = HttpContext.Session.GetInt32("iduser");
-
-            string[] topic_list = { "Programmation-Web", "Developpment-yourself", "Tue", "Wed", "Thu", "Sat" };
             ViewData["topic_list"] = topic_list;
             return View(topic_list );
         }
 
         public IActionResult ListPartial(string name)
         {
-            string[] topic_list = { "Programmation-Web", "Developpment-yourself", "Tue", "Wed", "Thu", "Sat" };
             ViewData["topic_list"] = topic_list;
             ViewData["name"] = name;
             return PartialView(topic_list);
@@ -51,7 +49,7 @@ namespace Forum_descussion_ASP.NET_core_mvc.Controllers
 
             ViewData["iduser"] = HttpContext.Session.GetInt32("iduser");
 
-            var forumContext = _context.QuestionModel.Where(q => q.Topic == name);
+            var forumContext = _context.QuestionModel.Where(q => q.Topic == name).Include(q => q.User);
             return View(await forumContext.ToListAsync());
         }
 

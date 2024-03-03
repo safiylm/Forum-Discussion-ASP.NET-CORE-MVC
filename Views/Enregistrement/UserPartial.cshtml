@@ -4,13 +4,24 @@
 @model IEnumerable<Forum_descussion_ASP.NET_core_mvc.Models.UserModel>
 
 
-<div>
+<link rel="stylesheet" href="~/css/user_listpartial.css" />
+<div class="div-list-users">
     @foreach (var item in Model) {
-       <div style="color:white;">
-           <img src="~/image/@item.Photo" width="200px" height="200px" style="border-radius:50%; margin: 15px 0;"/>
-           @Html.DisplayFor(modelItem => item.NameUser)
-       </div>
+        <div style="text-align:center;">
+           <img src="@item.Photo" width="100px" height="100px" style="border-radius:50%; margin: 7px auto; object-fit:cover;"/>
+           <br/>
+         <h2> @Html.DisplayFor(modelItem => item.NameUser)</h2>
+        </div>
+
     }
 </div>
 
+<br/>
 
+<style>
+
+    .div-list-users a img {
+        width: 100px !important;
+        height: 100px !important;
+    }
+</style>

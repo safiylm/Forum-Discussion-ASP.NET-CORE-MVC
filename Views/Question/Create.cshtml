@@ -27,14 +27,26 @@
                 <input asp-for="Titre" class="form-control" />
                 <span asp-validation-for="Titre" class="text-danger"></span>
             </div>
-            
-            <div class="form-group">
+        
+
+                    <div class="form-group">
                 <label asp-for="Topic" class="control-label"></label>
                 <select asp-for="Topic" class="form-control" >
                             <option>Programmation-Web</option>
                             <option>Developpment-yourself</option>
-                            <option>Sante</option>
-                    </select>
+                            <option>Maison</option>
+                            <option>Mariage</option>
+                            <option>Cuisine</option>
+                            <option>Loisir</option>
+                            <option>Maigrir</option>
+                            <option>Animeaux</option>
+                            <option>Famille</option>
+                            <option>Psycologie</option>
+                            <option>Travil, Vie privée</option>
+                            <option>Grossesse</option>
+                            <option>Couple</option>
+                           
+                        </select>
                 <span asp-validation-for="Topic" class="text-danger"></span>
             </div>
          
@@ -90,7 +102,7 @@
                                 <i class="fa-solid fa-outdent"></i>
                             </button>
                         </div>
-                        <div id="textinput"   contenteditable="true" style="width: 600px; height: 500px; border: 2px solid gray; padding:5px;margin : 15px 0;">
+                        <div id="textinput"   contenteditable="true" style="width: 100%; height: 500px; border: 2px solid gray; padding:5px;margin : 15px 0;">
                         </div>
 
                         <textarea asp-for="Description"  id="my-textarea" style="display:none"></textarea>

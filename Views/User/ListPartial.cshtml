@@ -8,9 +8,12 @@
     @foreach (var item in Model) {
         
          <a asp-controller="Question" asp-action="LeursQuestions" asp-route-Id="@item?.Id">
-            <img src="~/image/@item.Photo"/>
+            <img src="@item.Photo"/>
              <p>@Html.DisplayFor(modelItem => item.NameUser)</p> 
          </a>
           
     }
     </div>
+<style>
+  
+</style>
