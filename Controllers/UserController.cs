@@ -9,6 +9,7 @@ using Forum_descussion_ASP.NET_core_mvc.Data;
 using Forum_descussion_ASP.NET_core_mvc.Models;
 using System.Security.Policy;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
+using System.Text.Json.Nodes;
 
 namespace Forum_descussion_ASP.NET_core_mvc.Controllers
 {
@@ -34,7 +35,8 @@ namespace Forum_descussion_ASP.NET_core_mvc.Controllers
         public IActionResult Inscription()
         {
 
-            //  HttpContext.Session.SetString("Email", "safinazzzzz");
+
+//  HttpContext.Session.SetString("Email", "safinazzzzz");
             if (HttpContext.Session.GetString("Email") == null)
             {
                 return View();
@@ -44,6 +46,12 @@ namespace Forum_descussion_ASP.NET_core_mvc.Controllers
                 return RedirectToAction("Mesquestions", "Question");
 
             }
+        }
+
+
+        [HttpGet]
+        public   IActionResult PhotoPartial () {
+            return PartialView();                           // do something with myJson
         }
 
         // GET: Inscription

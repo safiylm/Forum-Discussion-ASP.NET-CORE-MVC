@@ -1,0 +1,100 @@
+﻿
+<div style="text-align:center;">
+<div id="images"></div>
+<button type="button" id="btn-show-div-choisir-photo" class="btn btn-secondary"> Choisir une photo de profil </button>
+</div>
+<script>
+    $("#img-user-photo").hide();
+    $("#images").hide();
+    $("#btn-show-div-choisir-photo").click(()=>{
+        $('#images').show()
+         $("#btn-show-div-choisir-photo").hide()
+    });
+
+
+     function hideDivChoisirPhoto(){
+        $('#images').hide()
+        $("#btn-show-div-choisir-photo").show()
+    }  
+    
+    function photoSelect(url){
+        $("#img-user-photo").show();
+
+        $("#input-user-photo").val(url);
+        $("#img-user-photo").attr('src',url);
+        $("#img-user-photo").show();
+        $('#images').hide()
+        $("#btn-show-div-choisir-photo").show()
+
+    }
+
+ 
+
+
+    const apikey = "563492ad6f917000010000019bf9e558e95043eb8487232e03cf1b4b";
+    const uri = "https://api.pexels.com/v1/curated";
+ 
+
+    
+    fetch(uri, {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization' : apikey,
+            }
+        })
+            .then(response => response.json())
+            .then(data =>{
+            
+                     let xxx="";
+        for (let i = 0; i < data['per_page']; i++){
+                xxx = "<button  type=\"button\" class=\"btn btn-light\" onclick='photoSelect(\"" + data["photos"][i]['src']['original'] + "\" )' ><img src='" + data["photos"][i]['src']['original'] +
+                "' class='photo-de-profil'/></button>" + xxx;
+
+        }
+
+        document.getElementById('images').innerHTML = xxx
+                + "<button type=\"button\" id='btn-hide-div-choisir-photo' class=\"btn btn-secondary\" onclick='hideDivChoisirPhoto()'> Annuler </button>"
+            
+     
+            
+            
+            })
+            .catch(error => console.error('Unable to get items.', error));
+
+          
+            
+      
+
+         
+       
+</script>
+
+       
+           
+          <style>
+
+                #images{
+                    display: flex;
+                    flex-wrap: wrap;
+                    width: 700px; 
+                    border: 0.5px solid gray;
+                    border-radius: 5px;
+                    padding: 10px;
+                }
+
+    .photo-de-profil, #img-user-photo {
+                    margin: 5px;
+                    width: 200px; 
+                    height:200px; object-fit: cover;
+                }
+
+    #img-user-photo {
+    border-radius:50%;
+    text-align:center;
+        margin: 15px auto;
+    display:block;
+    }
+
+            </style>

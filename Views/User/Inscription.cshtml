@@ -12,28 +12,39 @@
 
                         <div class="div-auth">
                             <h1>Inscription</h1>
-
+                            <br/>
 
         <form asp-action="Inscription" method="post" >
+
+
+                <input type="hidden" asp-for="Photo" id="input-user-photo" />
+                <img src="" id="img-user-photo" />
+                <div id="photopartialzone"></div>
+
+
+                <br/>
             <div class="form-group">
-                <label asp-for="NameUser" class="control-label"></label>
+                <label asp-for="NameUser" class="control-label">Nom</label>
                 <input asp-for="NameUser" class="form-control"/>
                 <span asp-validation-for="NameUser" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Email" class="control-label"></label>
-                <input type="email" asp-for="Email" class="form-control" value="gmail.com"/>
+                <input type="email" asp-for="Email" class="form-control" />
                 <span asp-validation-for="Email" class="text-danger"></span>
             </div>
+
+           
+
             <div class="form-group">
-                <label asp-for="Password" class="control-label"></label>
+                <label asp-for="Password" class="control-label">Mot de passe </label>
                     <input type="password" asp-for="Password" class="form-control" value="" id="password1" onkeyup="checkpassword(value)" required />
                 <span asp-validation-for="Password" class="text-danger"></span>
                         <div id="info-pwd"></div>
             </div>
 
             <div class="form-group">
-                <label class="control-label"> Confirmer votre mot de passe </label>
+                <label class="control-label"> Confirmez votre mot de passe </label>
                     <input type="password" class="form-control" value="" onChange="checkpasswordidentique(value)" required />
                 <span  class="text-danger"></span>
                 <div id="info-pwd2"></div>
@@ -49,6 +60,9 @@
 </div>
 
 <script>
+            $('#photopartialzone').load("/User/PhotoPartial")
+
+
     function checkpassword(pwd, pwdconfirmexiste=false) {
         console.log(pwd)
     if (pwd.length < 8) {
@@ -97,6 +111,7 @@
             document.getElementById("info-pwd2").innerHTML= "<p> Vos mots de passe ne sont pas identiques.</p>"
 
 }
+
 
 </script>
 
