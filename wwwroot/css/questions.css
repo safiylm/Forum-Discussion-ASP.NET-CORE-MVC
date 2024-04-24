@@ -9,135 +9,151 @@ a {
     color: var(--font-color);
 }
 
-.div-topics-all-questions{
-    display:flex;
-    flex-direction:row;
-    flex-wrap:nowrap;
-    align-items:flex-start;
-    justify-content:center;
-    width:95vw;
-}
-
-
-.div-topics-all-questions #topiclistpartialzone {
-        flex: 20%;
-    }
-
-.div-topics-all-questions-main{
-    flex: 80%;
-}
-
-
-.div-list-question-and-user{
-    width: 100%;
-}
-
-.btnnn {
-    background-color: #9a7ce3;
-    padding: 7px 13px;
-    border-radius: 7px;
-}
-
-#mes-donnees-personnelles-contenu {
-    background-color: white;
-    padding: 30px;
-    margin: 20px auto;
-    max-width: 900px;
-    border-radius: 15px;
-}
-
-
-
-.question .titre a, .div-categorie a {
-    text-decoration: none;
-   color: black;
-}
-
-.div-btn-, .div-categorie, .div-btn-choix {
+.div-topics-all-questions {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    align-items: flex-start;
     justify-content: center;
-    align-items: center;
+    width: 95vw;
+}
+    @media (max-width:700px) {
+        .div-topics-all-questions {
+            flex-direction: column-reverse;
+        }
 }
 
-.div-btn-, .div-btn-choix {
-    justify-content: center;
-}
 
-.div-btn-choix {
-    margin: 15px 0;
-}
-    .div-btn- button, .div-btn-choix button, .div-btn-choix a{
-        margin: 0 10px;
-        padding: 5px 9px;
-        border: none;
-        background-color: transparent;
-        color: #7b8598;
-        border-radius: 6px;
-}
-    .div-btn-choix a {
+
+    .div-topics-all-questions #topiclistpartialzone {
+        flex: 20%;
+    }
+
+    .div-topics-all-questions-main {
+        flex: 80%;
+    }
+
+    @media (max-width:700px) {
+        .div-topics-all-questions #topiclistpartialzone,
+        .div-topics-all-questions-main {
+            flex: 100%;
+        }
+    }
+
+    .div-list-question-and-user {
+        width: 100%;
+    }
+
+    .btnnn {
+        background-color: #9a7ce3;
+        padding: 7px 13px;
+        border-radius: 7px;
+    }
+
+    #mes-donnees-personnelles-contenu {
+        background-color: white;
+        padding: 30px;
+        margin: 20px auto;
+        max-width: 900px;
+        border-radius: 15px;
+    }
+
+
+
+    .question .titre a, .div-categorie a {
         text-decoration: none;
         color: black;
     }
 
+    .div-btn-, .div-categorie, .div-btn-choix {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+    }
 
-   .buttonactive {
+    .div-btn-, .div-btn-choix {
+        justify-content: center;
+    }
+
+    .div-btn-choix {
+        margin: 15px 0;
+    }
+
+        .div-btn- button, .div-btn-choix button, .div-btn-choix a {
+            margin: 0 10px;
+            padding: 5px 9px;
+            border: none;
+            background-color: transparent;
+            color: #7b8598;
+            border-radius: 6px;
+        }
+
+        .div-btn-choix a {
+            text-decoration: none;
+            color: black;
+        }
+
+
+    .buttonactive {
         color: white;
         background-color: #9a7ce3;
     }
 
-   .buttoninactive {
+    .buttoninactive {
         color: rgb(30,30,70);
-        background-color : transparent;
+        background-color: transparent;
     }
 
-.div-liste-questions,  .titre {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-    flex-wrap: wrap;
-}
+    .div-liste-questions, .titre {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        flex-wrap: wrap;
+    }
 
 
 
-.div-liste-questions {
-    background-color: white;
-    border-radius: 15px;
-    align-items: center;
-    /*max-width:1100px;*/
-    max-width: 900px;
-    padding-bottom: 20px;
-    margin: 20px auto;
-}
+    .div-liste-questions {
+        background-color: white;
+        border-radius: 15px;
+        align-items: center;
+        /*max-width:1100px;*/
+        max-width: 900px;
+        padding-bottom: 20px;
+        margin: 20px auto;
+    }
 
 
 
-.titre h3 {
-    font-size: 20px;
-}
+    .titre h3 {
+        font-size: 20px;
+    }
 
-.question {
-    margin-top: 1rem;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    align-content: center;
-    border-bottom: 1px solid #efedef;
-    width: 100%;
-}
+    .question {
+        margin-top: 1rem;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        align-content: center;
+        border-bottom: 1px solid #efedef;
+        width: 100%;
+    }
+
+
 
     .question div {
         margin: 10px;
     }
 
-    .question #user-photo{
+    .question #user-photo {
         width: 50px;
-        height:50px;
-        object-fit:cover;
-        border-radius:50%;
-       margin : 2px 8px 10px 2px;
+        height: 50px;
+        object-fit: cover;
+        border-radius: 50%;
+        margin: 2px 8px 10px 2px;
     }
 
 
@@ -145,27 +161,45 @@ a {
         flex: 50%;
     }
 
-.div-categorie {
-    flex: 25%;
-}
-
-    .div-categorie a {
-        text-decoration: none;
-        color: #798591;
-        font-weight: bold;
+    .div-categorie {
+        flex: 25%;
     }
 
+        .div-categorie a {
+            text-decoration: none;
+            color: #798591;
+            font-weight: bold;
+        }
 
-        .div-edit, .div-delete {
-    flex: 5%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-}
-    .div-edit a, .div-delete a {
-        background-color: dodgerblue;
-        padding: 5px 12px;
-        color: white;
-        border-radius: 5px;
+
+    .div-edit, .div-delete {
+        flex: 5%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
     }
+
+        .div-edit a, .div-delete a {
+            background-color: dodgerblue;
+            padding: 5px 12px;
+            color: white;
+            border-radius: 5px;
+        }
+
+        .div-delete a {
+            background-color: crimson;
+        }
+
+            @media (max-width:560px) {
+                .question, .div-categorie, .div-edit, .div-delete {
+                    flex-direction: column;
+                    align-content: flex-start;
+                    justify-content: flex-start;
+                }
+
+                    .div-edit a, .div-delete a {
+                        width: 100%;
+                        text-align: center;
+                    }
+            }

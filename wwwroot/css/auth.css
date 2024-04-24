@@ -27,3 +27,10 @@
     .div-auth input {
         width: 100%;
     }
+
+
+@media (max-width:560px) {
+    .div-auth {
+        width: 95vw;
+    }
+    }

@@ -1,0 +1,60 @@
+﻿
+body {
+    position: relative;
+    width: 100vw;
+    min-height: 100vh;
+    height: 100%;
+}
+
+#delete_response_partialzone, 
+#edit_response_partialzone
+{
+    display:none;
+    position: fixed;
+    width: 800px;
+    height: 500px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 1;
+    z-index: 1;
+    padding: 30px;
+    background-color: crimson;
+    color: white;
+}
+
+
+#edit_response_partialzone {
+    background-color: #9a7ce3;
+}
+
+
+#form-edit-reponse {
+    background-color: white;
+    border-radius: 15px;
+    padding: 15px;
+    margin: 20px auto;
+    width: 100%;
+}
+
+    #form-edit-reponse textarea {
+        width: 100%;
+        padding: 10px;
+    }
+
+#div-delete-reponse {
+    background-color: white;
+    border-radius: 15px;
+    padding: 15px;
+    margin: 50px auto;
+}
+
+
+
+@media (max-width: 900px) {
+    #delete_response_partialzone,
+    #edit_response_partialzone {
+        width: 90vw;
+        height: auto;
+    }
+}

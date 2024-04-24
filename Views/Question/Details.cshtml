@@ -1,5 +1,6 @@
 ﻿@model IEnumerable<Forum_descussion_ASP.NET_core_mvc.Models.ResponseModel>
 <link rel="stylesheet" href="~/css/ajouter-forum.css" />
+<link rel="stylesheet" href="~/css/reponse.edit.delete.css" />
 
 @{
     ViewData["Title"] = "Details";
@@ -209,15 +210,18 @@ else
                 }
 
              
-
                 function open_edit_reponse( id ) {
                     $('#edit_response_partialzone').load("/Response/EditPartial?id=" + id)
                     $("#edit_response_partialzone").show();
+                    $("#delete_response_partialzone").css("display", "none");
+
                 }
 
                 function open_delete_reponse(id) {
                     $('#delete_response_partialzone').load("/Response/DeletePartial?id=" + id)
                     $("#delete_response_partialzone").show();
+                    $("#edit_response_partialzone").css("display", "none");
+
                 }
             </script>
         }

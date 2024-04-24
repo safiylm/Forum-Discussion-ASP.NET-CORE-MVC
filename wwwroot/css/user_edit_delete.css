@@ -15,3 +15,11 @@
     font-family:'Microsoft YaHei';
 
 }
+
+@media (max-width:910px) {
+
+    .container-user-delete, .container-user-edit,
+    .container-question-delete {
+        width: 90vw;
+    }
+}

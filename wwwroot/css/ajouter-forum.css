@@ -33,6 +33,15 @@ h1{
     margin: 0px auto;
 }
 
+@media (max-width:910px) {
+
+    .div-form-ajouter-forum .container 
+ {
+        width: 90vw;
+    }
+}
+
+
 .div-form-ajouter-forum .options {
     display: flex;
     flex-wrap: wrap;
